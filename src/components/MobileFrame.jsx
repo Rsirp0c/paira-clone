@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import TabBar from './TabBar';
 import * as assets from '../assets/figmaAssets';
 
@@ -45,7 +46,7 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
       </div>
 
       {/* Top Navigation */}
-      <div className="absolute flex gap-5 items-center left-1/2 top-[66px] translate-x-[-50%]">
+      <div className="absolute flex gap-5 items-center left-1/2 top-[66px] translate-x-[-50%] z-20">
         <div className="bg-[rgba(30,30,29,0.4)] border border-primary-neutral-900 h-10 relative rounded-[24px] shrink-0 w-64">
           <div className="box-border flex gap-6 h-10 items-center overflow-clip px-3 py-0 relative rounded-[inherit] w-64">
             <div className="flex flex-[1_0_0] h-full items-center min-h-px min-w-px relative rounded-[72px] shrink-0">
@@ -54,13 +55,24 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
                 onClick={() => onTabChange('people')}
                 className="box-border flex flex-[1_0_0] flex-col h-full items-center justify-center min-h-px min-w-px relative shrink-0 hover:opacity-80 transition-opacity"
               >
-                <p className={`font-jakarta leading-[1.2] text-sm ${activeTab === 'people' ? 'font-semibold text-primary-neutral-50' : 'font-normal text-primary-neutral-300'}`}>
+                <motion.p
+                  animate={{
+                    fontWeight: activeTab === 'people' ? 600 : 400,
+                    color: activeTab === 'people' ? 'rgb(250, 250, 250)' : 'rgb(212, 212, 210)'
+                  }}
+                  transition={{ duration: 0.15 }}
+                  className="font-jakarta leading-[1.2] text-sm"
+                >
                   People
-                </p>
+                </motion.p>
                 {activeTab === 'people' && (
-                  <div className="absolute box-border flex flex-col items-center justify-center left-0 px-0 py-px bottom-0 w-[116px]">
+                  <motion.div
+                    layoutId="tabIndicator"
+                    className="absolute box-border flex flex-col items-center justify-center left-0 px-0 py-px bottom-0 w-[116px]"
+                    transition={{ type: 'spring', stiffness: 600, damping: 35, mass: 0.5 }}
+                  >
                     <div className="bg-primary-yellow-50 h-px min-w-[24px] rounded-full shrink-0 w-full" />
-                  </div>
+                  </motion.div>
                 )}
               </button>
 
@@ -69,13 +81,24 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
                 onClick={() => onTabChange('request')}
                 className="box-border flex flex-[1_0_0] flex-col h-full items-center justify-center min-h-px min-w-px relative shrink-0 hover:opacity-80 transition-opacity"
               >
-                <p className={`font-jakarta leading-[1.2] text-sm ${activeTab === 'request' ? 'font-semibold text-primary-neutral-50' : 'font-normal text-primary-neutral-300'}`}>
+                <motion.p
+                  animate={{
+                    fontWeight: activeTab === 'request' ? 600 : 400,
+                    color: activeTab === 'request' ? 'rgb(250, 250, 250)' : 'rgb(212, 212, 210)'
+                  }}
+                  transition={{ duration: 0.15 }}
+                  className="font-jakarta leading-[1.2] text-sm"
+                >
                   Request
-                </p>
+                </motion.p>
                 {activeTab === 'request' && (
-                  <div className="absolute box-border flex flex-col items-center justify-center left-0 px-0 py-px bottom-0 w-[116px]">
+                  <motion.div
+                    layoutId="tabIndicator"
+                    className="absolute box-border flex flex-col items-center justify-center left-0 px-0 py-px bottom-0 w-[116px]"
+                    transition={{ type: 'spring', stiffness: 600, damping: 35, mass: 0.5 }}
+                  >
                     <div className="bg-primary-yellow-50 h-px min-w-[24px] rounded-full shrink-0 w-full" />
-                  </div>
+                  </motion.div>
                 )}
               </button>
             </div>

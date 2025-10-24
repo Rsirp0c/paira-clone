@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import MobileFrame from './components/MobileFrame';
 import PeoplePage from './components/PeoplePage';
 import RequestPage from './components/RequestPage';
@@ -24,11 +25,13 @@ function AppContent() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-black">
       <MobileFrame activeTab={activeTab} onTabChange={handleTabChange}>
-        <Routes>
-          <Route path="/" element={<PeoplePage />} />
-          <Route path="/requests" element={<RequestPage />} />
-          <Route path="/profile/:id" element={<ProfileDetailPage />} />
-        </Routes>
+        <AnimatePresence mode="wait" initial={false}>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<PeoplePage />} />
+            <Route path="/requests" element={<RequestPage />} />
+            <Route path="/profile/:id" element={<ProfileDetailPage />} />
+          </Routes>
+        </AnimatePresence>
       </MobileFrame>
     </div>
   );

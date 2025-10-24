@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import * as assets from '../assets/figmaAssets';
 
 const PeoplePage = () => {
@@ -9,7 +10,13 @@ const PeoplePage = () => {
   };
 
   return (
-    <>
+    <motion.div
+      initial={{ x: -15 }}
+      animate={{ x: 0 }}
+      exit={{ x: -15 }}
+      transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+      className="absolute inset-0"
+    >
       {/* Button Area */}
       <div className="absolute box-border flex items-center justify-between left-5 px-4 py-3 top-[680px] w-[353px]">
         {/* Close Button */}
@@ -139,7 +146,7 @@ const PeoplePage = () => {
           </div>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 };
 

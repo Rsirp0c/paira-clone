@@ -1,11 +1,18 @@
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import * as assets from '../assets/figmaAssets';
 
 const ProfileDetailPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-gradient-to-b from-[#1e1e1d] from-[5.826%] to-[#131313] to-[94.067%] h-full w-full relative overflow-y-auto rounded-[48px]">
+    <motion.div
+      initial={{ x: 20, scale: 0.98 }}
+      animate={{ x: 0, scale: 1 }}
+      exit={{ x: 20, scale: 0.98 }}
+      transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+      className="bg-gradient-to-b z-20 from-[#1e1e1d] from-[5.826%] to-[#131313] to-[94.067%] h-full w-full relative overflow-y-auto rounded-[48px]"
+    >
       {/* Status Bar */}
       <div className="absolute h-[54px] left-0 top-0 w-[393px] z-30" data-name="Status Bar">
         <div className="absolute h-[54px] left-0 right-[64.25%] top-1/2 translate-y-[-50%]">
@@ -374,7 +381,7 @@ const ProfileDetailPage = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

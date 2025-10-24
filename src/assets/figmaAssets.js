@@ -1,9 +1,14 @@
-// Image assets from Figma design
+// Profile Image assets from Figma - People page
 export const imgImage71 = "https://www.figma.com/api/mcp/asset/1814ddfa-a00e-4629-ae6c-eeeed81b5590";
 export const imgImage70 = "https://www.figma.com/api/mcp/asset/c9c67309-a153-4f32-b4f7-fc2a3a2793b4";
 export const imgImage67 = "https://www.figma.com/api/mcp/asset/0039da1f-885e-4024-91fa-03175082c787";
 
-// Icon assets
+// Profile Image assets from Figma - Request page
+export const imgImage67Request = "https://www.figma.com/api/mcp/asset/6a4a2d8b-b9e9-4375-9497-93f171898816";
+export const imgImage70Request = "https://www.figma.com/api/mcp/asset/db0ef52a-5050-4164-8c27-3055b87c909b";
+export const imgImage71Request = "https://www.figma.com/api/mcp/asset/7b40e22a-b682-4921-9f58-d34896ac32a5";
+
+// Icon assets - Common
 export const img = "https://www.figma.com/api/mcp/asset/4a77c043-6f75-423a-ae86-a29ccb47e5d9";
 export const img1 = "https://www.figma.com/api/mcp/asset/35b01755-1824-44a5-832c-79f82e78b81a";
 export const img2 = "https://www.figma.com/api/mcp/asset/6f0a804d-461a-40d3-aa88-88cad7f57807";
@@ -17,3 +22,11 @@ export const img9 = "https://www.figma.com/api/mcp/asset/5810db3a-6cac-44d7-ad96
 export const img10 = "https://www.figma.com/api/mcp/asset/b475d8a2-99f3-46d1-a82c-d86d7bcb649b";
 export const img11 = "https://www.figma.com/api/mcp/asset/a4351f17-a5e5-4a45-9446-b40298b43107";
 export const img12 = "https://www.figma.com/api/mcp/asset/27619106-4233-49a4-8d12-cfdcbacea12e";
+
+// Icon assets - Request page specific
+export const img11Request = "https://www.figma.com/api/mcp/asset/187a6059-e0a1-485d-a459-b503007d8267"; // Case Round icon
+export const img12Request = "https://www.figma.com/api/mcp/asset/8933c772-cc73-4e6d-9596-b1b0d7a5c7eb"; // User Heart icon
+export const img13 = "https://www.figma.com/api/mcp/asset/f90d1a21-2b50-42d4-a874-42b94dfc3a33"; // Map Point Wave icon
+export const img14 = "https://www.figma.com/api/mcp/asset/e74dff92-8d9e-4862-ae17-6019222a4197"; // Dollar icon
+export const img15 = "https://www.figma.com/api/mcp/asset/24040cac-2bf3-4890-b1a2-bec75bb6261d"; // Tuning icon
+export const img10Request = "https://www.figma.com/api/mcp/asset/8b0db381-4eef-4840-b6c7-864c5ecb2a03"; // Verified check for request

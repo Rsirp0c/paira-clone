@@ -1,0 +1,196 @@
+import * as assets from '../assets/figmaAssets';
+
+const RequestPage = () => {
+  return (
+    <>
+      {/* Button Area */}
+      <div className="absolute box-border flex items-center justify-between left-5 px-4 py-3 top-[680px] w-[353px]">
+        {/* Close Button */}
+        <button className="absolute bg-primary-neutral-50 border-[1.5px] border-primary-neutral-50 box-border flex gap-[10px] items-center justify-center left-[calc(50%+-132.5px)] p-[6px] rounded-full size-14 top-1/2 translate-x-[-50%] translate-y-[-50%] cursor-pointer hover:opacity-80 transition-opacity">
+          <div className="relative shrink-0 size-7">
+            <div className="absolute flex inset-[32.322%] items-center justify-center">
+              <div className="flex-none h-px rotate-45 w-3">
+                <img alt="" className="block max-w-none size-full" src={assets.img7} />
+              </div>
+            </div>
+            <div className="absolute flex inset-[32.322%] items-center justify-center">
+              <div className="flex-none h-3 rotate-45 w-px">
+                <img alt="" className="block max-w-none size-full" src={assets.img8} />
+              </div>
+            </div>
+          </div>
+        </button>
+
+        {/* POST MINE Button */}
+        <button className="absolute bg-primary-blue-500 box-border flex gap-[10px] h-9 items-center justify-center left-1/2 pb-2 pt-2 px-8 rounded-full shadow-[0px_7px_29px_0px_rgba(255,255,255,0.2)] top-1/2 translate-x-[-50%] translate-y-[-50%] cursor-pointer hover:opacity-90 transition-opacity">
+          <p className="font-jakarta font-extrabold leading-[1.2] text-sm text-primary-neutral-50 tracking-[1.4px] uppercase">
+            Post Mine
+          </p>
+        </button>
+
+        {/* Handshake Button */}
+        <button className="absolute bg-primary-yellow-50 box-border flex flex-col gap-[10px] items-center justify-center left-[calc(50%+132.5px)] p-[6px] rounded-full shadow-[0px_7px_29px_0px_rgba(255,255,255,0.2)] size-14 top-1/2 translate-x-[-50%] translate-y-[-50%] cursor-pointer hover:opacity-80 transition-opacity">
+          <div className="overflow-clip relative shrink-0 size-7">
+            <div className="absolute inset-[5.21%_9.36%]">
+              <img alt="" className="block max-w-none size-full" src={assets.img10} />
+            </div>
+          </div>
+        </button>
+      </div>
+
+      {/* Card 3 (Background) */}
+      <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*0.0523359552025795)+(var(--transform-inner-height)*0.9986295104026794)))] items-center justify-center left-[calc(50%+0.31px)] top-[148px] translate-x-[-50%] w-[calc(1px*((var(--transform-inner-height)*0.0523359552025795)+(var(--transform-inner-width)*0.9986295104026794)))]">
+        <div className="flex-none rotate-[3deg]">
+          <div className="bg-[#222124] border border-[rgba(94,94,92,0.6)] h-[305px] relative rounded-[36px] w-[254px]">
+            <div className="box-border flex flex-col gap-3 h-[305px] items-center overflow-clip pb-5 pt-6 px-6 relative rounded-[inherit] w-[254px]">
+              <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*0.06975647062063217)+(var(--transform-inner-height)*0.9975640773773193)))] items-center justify-center left-[-20.5px] top-[-23px] w-[calc(1px*((var(--transform-inner-height)*0.06975647062063217)+(var(--transform-inner-width)*0.9975640773773193)))]">
+                <div className="flex-none rotate-[356deg]">
+                  <div className="bg-[rgba(20,20,20,0.65)] h-[459px] shadow-[0px_0px_20px_0px_#1e1e1d] w-[391px]" />
+                </div>
+              </div>
+              <div className="absolute blur-[50px] filter flex gap-[10px] items-center left-[-36px] opacity-[0.12] size-[424px] top-0">
+                <div className="aspect-square h-full relative shrink-0">
+                  <img alt="" className="absolute h-[150%] left-[-0.94%] max-w-none top-[-8.75%] w-full" src={assets.imgImage71Request} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Card 2 (Middle) */}
+      <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*0.06975647062063217)+(var(--transform-inner-height)*0.9975640773773193)))] items-center justify-center left-[43px] top-[175px] w-[calc(1px*((var(--transform-inner-height)*0.06975647062063217)+(var(--transform-inner-width)*0.9975640773773193)))]">
+        <div className="flex-none rotate-[356deg]">
+          <div className="bg-[#222124] border border-[rgba(94,94,92,0.8)] h-[360px] relative rounded-[36px] w-[300px]">
+            <div className="box-border flex flex-col gap-3 h-[360px] items-center overflow-clip pb-5 pt-6 px-6 relative rounded-[inherit] w-[300px]">
+              <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*0.06975647062063217)+(var(--transform-inner-height)*0.9975640773773193)))] items-center justify-center left-[-20.5px] top-[-23px] w-[calc(1px*((var(--transform-inner-height)*0.06975647062063217)+(var(--transform-inner-width)*0.9975640773773193)))]">
+                <div className="flex-none rotate-[356deg]">
+                  <div className="bg-[rgba(20,20,20,0.4)] h-[459px] shadow-[0px_0px_20px_0px_#1e1e1d] w-[391px]" />
+                </div>
+              </div>
+              <div className="absolute blur-[50px] filter flex gap-[10px] items-center left-[-36px] opacity-[0.12] size-[424px] top-0">
+                <div className="flex-[1_0_0] h-full min-h-px min-w-px relative shrink-0">
+                  <img alt="" className="absolute h-[132.45%] left-[-0.18%] max-w-none top-[-16.23%] w-[100.04%]" src={assets.imgImage70Request} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Card 1 (Main Request Card) */}
+      <div className="absolute bg-[#222124] border border-primary-neutral-700 cursor-pointer h-[424px] left-1/2 rounded-[36px] top-[205px] translate-x-[-50%] w-[353px] hover:border-primary-neutral-300 transition-colors">
+        <div className="box-border flex flex-col gap-3 h-[424px] items-center overflow-clip pb-5 pt-6 px-6 relative rounded-[inherit] w-[353px]">
+          {/* Requester Profile Section */}
+          <div className="bg-[rgba(195,185,185,0.1)] box-border flex flex-col gap-4 items-center justify-center px-3 py-2 relative rounded-[36px] shrink-0 w-full">
+            <div className="flex gap-3 items-center relative shrink-0 w-full">
+              <div className="flex gap-[10px] items-center overflow-clip relative rounded-full shrink-0">
+                <div className="relative rounded-full shrink-0 size-9">
+                  <img alt="" className="absolute h-[219.22%] left-[-29.76%] max-w-none top-[-19.12%] w-[146.34%] rounded-full object-cover" src={assets.imgImage67Request} />
+                </div>
+              </div>
+              <div className="flex flex-[1_0_0] flex-col items-start min-h-px min-w-px relative shrink-0">
+                <div className="flex gap-1 items-center relative shrink-0 w-full">
+                  <p className="font-jakarta font-semibold leading-[1.2] text-[13px] text-primary-neutral-50">
+                    Chloe Anderson
+                  </p>
+                  <div className="overflow-clip relative shrink-0 size-4">
+                    <div className="absolute inset-[8.333%]">
+                      <img alt="" className="block max-w-none size-full" src={assets.img10Request} />
+                    </div>
+                  </div>
+                </div>
+                <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50 w-full">
+                  Product Design Intern at Meta
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Request Content */}
+          <div className="box-border flex flex-[1_0_0] flex-col gap-8 items-center justify-center min-h-px min-w-px pb-0 pt-1 px-0 relative shrink-0 w-full">
+            <div className="flex flex-col gap-5 items-start relative shrink-0 w-full">
+              <div className="flex flex-col gap-1 items-start relative shrink-0 w-full">
+                <h2 className="font-dm-serif leading-[1.2] text-xl text-primary-neutral-50 w-full">
+                  Seeking Feedback on Behavioral Questions for Meta PD
+                </h2>
+                <div className="flex gap-2 items-start relative shrink-0 w-full">
+                  <p className="font-jakarta font-normal leading-[1.2] text-[13px] text-[#cecec9]">
+                    Mock Interview
+                  </p>
+                </div>
+              </div>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 items-start relative shrink-0 w-full">
+                {/* Technology Tag */}
+                <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
+                  <div className="overflow-clip relative shrink-0 size-5">
+                    <div className="absolute inset-[5.21%]">
+                      <img alt="" className="block max-w-none size-full" src={assets.img11Request} />
+                    </div>
+                  </div>
+                  <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50">
+                    Technology
+                  </p>
+                </div>
+
+                {/* Mentor Tag */}
+                <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
+                  <div className="overflow-clip relative shrink-0 size-5">
+                    <div className="absolute inset-[5.208%]">
+                      <img alt="" className="block max-w-none size-full" src={assets.img12Request} />
+                    </div>
+                  </div>
+                  <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50">
+                    Mentor
+                  </p>
+                </div>
+
+                {/* Online Tag */}
+                <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
+                  <div className="overflow-clip relative shrink-0 size-5">
+                    <div className="absolute inset-[5.208%]">
+                      <img alt="" className="block max-w-none size-full" src={assets.img13} />
+                    </div>
+                  </div>
+                  <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50">
+                    Online
+                  </p>
+                </div>
+
+                {/* $50 Tag */}
+                <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
+                  <div className="overflow-clip relative shrink-0 size-5">
+                    <div className="absolute inset-[5.208%]">
+                      <img alt="" className="block max-w-none size-full" src={assets.img14} />
+                    </div>
+                  </div>
+                  <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50">
+                    $50
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="flex flex-col gap-8 items-start relative shrink-0 w-full">
+              <p className="font-jakarta font-normal leading-[1.5] text-[13px] text-primary-neutral-50 w-full">
+                I've got a Meta Product Design interview coming up, and the next round is all about behavior questions with a senior PM hiring manager. I'd love to practice with someone—peer or mentor—...
+              </p>
+            </div>
+          </div>
+
+          {/* Background blur */}
+          <div className="absolute blur-[50px] filter flex gap-[10px] items-center left-[-36px] opacity-[0.12] size-[424px] top-0">
+            <div className="absolute left-0 rounded-[20px] size-[424px] top-0">
+              <img alt="" className="absolute h-[219.22%] left-[-29.76%] max-w-none top-[-19.12%] w-[146.34%]" src={assets.imgImage67Request} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default RequestPage;

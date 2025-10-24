@@ -1,11 +1,17 @@
-import React from 'react';
-import ProfileCard from './components/ProfileCard';
+import { useState } from 'react';
+import MobileFrame from './components/MobileFrame';
+import PeoplePage from './components/PeoplePage';
+import RequestPage from './components/RequestPage';
 import './index.css';
 
 function App() {
+  const [activeTab, setActiveTab] = useState('people');
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-black">
-      <ProfileCard />
+      <MobileFrame activeTab={activeTab} onTabChange={setActiveTab}>
+        {activeTab === 'people' ? <PeoplePage /> : <RequestPage />}
+      </MobileFrame>
     </div>
   );
 }

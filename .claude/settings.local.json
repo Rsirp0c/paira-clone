@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figma__get_screenshot",
+      "mcp__figma__get_design_context",
+      "Bash(npm create:*)",
+      "Bash(npm install)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(npm run build:*)",
+      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_VFZ4va/**)",
+      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_vswLoq/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

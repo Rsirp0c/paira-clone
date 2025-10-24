@@ -30,3 +30,13 @@ export const img13 = "https://www.figma.com/api/mcp/asset/f90d1a21-2b50-42d4-a87
 export const img14 = "https://www.figma.com/api/mcp/asset/e74dff92-8d9e-4862-ae17-6019222a4197"; // Dollar icon
 export const img15 = "https://www.figma.com/api/mcp/asset/24040cac-2bf3-4890-b1a2-bec75bb6261d"; // Tuning icon
 export const img10Request = "https://www.figma.com/api/mcp/asset/8b0db381-4eef-4840-b6c7-864c5ecb2a03"; // Verified check for request
+
+// Profile Detail Page assets
+export const imgImage30 = "https://www.figma.com/api/mcp/asset/21c9e428-291f-44b5-b413-d8652c91ff1f"; // Meta logo
+export const imgImage31 = "https://www.figma.com/api/mcp/asset/a34a7266-e2e7-4887-a898-5f0dcb40a07d"; // Cornell logo
+export const img9Avatar = "https://www.figma.com/api/mcp/asset/34a4a7b2-1289-4335-98ab-34a1248bf4e0"; // Recommendation avatar
+
+// Status Bar assets (Profile Detail Page)
+export const imgBatteryCap = "https://www.figma.com/api/mcp/asset/487a6b9f-2d9e-4115-b71b-50d061bef5f8"; // Battery cap
+export const imgWifi = "https://www.figma.com/api/mcp/asset/21d79497-d63c-4075-9b4e-3f0b20206430"; // Wifi icon
+export const imgCellular = "https://www.figma.com/api/mcp/asset/f2cf6141-932e-4264-98fe-b19b109ed887"; // Cellular signal icon

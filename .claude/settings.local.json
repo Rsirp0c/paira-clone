@@ -10,7 +10,12 @@
       "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_VFZ4va/**)",
       "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_vswLoq/**)",
       "mcp__figma__get_metadata",
-      "WebFetch(domain:www.figma.com)"
+      "WebFetch(domain:www.figma.com)",
+      "Bash(npm install:*)",
+      "mcp__ide__getDiagnostics",
+      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_6dz104/**)",
+      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_ygvYFf/**)",
+      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_2HkBM7/**)"
     ],
     "deny": [],
     "ask": []

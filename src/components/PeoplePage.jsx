@@ -1,6 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import * as assets from '../assets/figmaAssets';
 
 const PeoplePage = () => {
+  const navigate = useNavigate();
+
+  const handleProfileClick = () => {
+    navigate('/profile/1'); // Navigate to profile detail page
+  };
+
   return (
     <>
       {/* Button Area */}
@@ -73,7 +80,10 @@ const PeoplePage = () => {
       </div>
 
       {/* Card 1 (Main Profile Card) */}
-      <div className="absolute bg-base-card border border-primary-neutral-700 cursor-pointer h-[424px] left-1/2 rounded-[36px] top-[205px] translate-x-[-50%] w-[353px] hover:border-primary-neutral-300 transition-colors">
+      <div
+        onClick={handleProfileClick}
+        className="absolute bg-base-card border border-primary-neutral-700 cursor-pointer h-[424px] left-1/2 rounded-[36px] top-[205px] translate-x-[-50%] w-[353px] hover:border-primary-neutral-300 transition-colors"
+      >
         <div className="box-border flex flex-col gap-4 h-[424px] items-center overflow-clip p-5 relative rounded-[inherit] w-[353px]">
           <div className="absolute blur-[50px] filter flex gap-[10px] items-center left-[-36px] opacity-[0.12] size-[424px] top-0">
             <div className="absolute left-0 rounded-[20px] size-[424px] top-0">

@@ -27,7 +27,7 @@ const RequestDetailPage = () => {
       </button>
 
       {/* Button Area - Bottom Actions */}
-      <div className="absolute bottom-[45px] box-border flex items-center justify-between left-1/2 px-4 py-3 translate-x-[-50%] w-[353px] z-10">
+      <div className="absolute bottom-[100px] box-border flex items-center justify-between left-1/2 px-4 py-3 translate-x-[-50%] w-[353px] z-10">
         {/* Close Button */}
         <button className="bg-primary-neutral-50 border-[1.5px] border-primary-neutral-50 box-border flex gap-[10px] items-center justify-center p-[6px] rounded-full size-14 cursor-pointer hover:opacity-80 transition-opacity">
           <div className="relative shrink-0 size-7">

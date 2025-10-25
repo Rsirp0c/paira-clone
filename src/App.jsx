@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
 import MobileFrame from './components/MobileFrame';
 import PeoplePage from './components/PeoplePage';
 import RequestPage from './components/RequestPage';
@@ -28,8 +29,37 @@ function AppContent() {
     }
   };
 
+  // Listen for navigation messages from parent window
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.data.type === 'NAVIGATE_TO_STEP') {
+        const { stepId } = event.data;
+
+        switch(stepId) {
+          case 'people':
+            navigate('/');
+            break;
+          case 'request':
+            navigate('/requests');
+            break;
+          case 'ai':
+            navigate('/ai');
+            break;
+          default:
+            break;
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [navigate]);
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
+    <div className="flex items-center justify-center max-h-screen bg-black">
       <MobileFrame activeTab={activeTab} onTabChange={handleTabChange}>
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>

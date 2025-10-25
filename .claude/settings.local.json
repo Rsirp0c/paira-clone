@@ -15,7 +15,11 @@
       "mcp__ide__getDiagnostics",
       "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_6dz104/**)",
       "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_ygvYFf/**)",
-      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_2HkBM7/**)"
+      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_2HkBM7/**)",
+      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_7Z7Ryz/**)",
+      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_dPu8wm/**)",
+      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_KYfMm4/**)",
+      "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_r5rLeo/**)"
     ],
     "deny": [],
     "ask": []

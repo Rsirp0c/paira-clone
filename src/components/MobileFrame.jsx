@@ -6,32 +6,34 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
   return (
     <div className="overflow-clip relative rounded-[48px] w-[393px] h-[852px] bg-[#10100F]" data-name="Mobile Frame">
       {/* Tab Bar */}
-      <TabBar className="absolute bg-primary-neutral-950 bottom-0 box-border flex items-center justify-between left-0 pb-7 pt-2 px-11 shadow-[0px_-10px_40px_0px_rgba(0,0,0,0.1)] w-[393px]" />
+      {activeTab !== 'ai' && (
+        <TabBar
+          className="absolute bg-primary-neutral-950 bottom-0 box-border flex items-center justify-between left-0 pb-7 pt-2 px-11 shadow-[0px_-10px_40px_0px_rgba(0,0,0,0.1)] w-[393px] z-40"
+          onTabClick={onTabChange}
+        />
+      )}
 
       {/* Status Bar */}
-      <div className="absolute h-[54px] left-0 top-0 w-[393px]" data-name="Status Bar">
-        <div className="absolute h-[54px] left-0 right-[64.25%] top-1/2 translate-y-[-50%]">
-          <p className="absolute font-sf-pro font-semibold inset-[33.96%_36.71%_25.3%_36.96%] leading-[22px] text-[17px] text-primary-neutral-50 text-center">
-            9:41
-          </p>
-        </div>
-        <div className="absolute h-[54px] left-[64.25%] right-0 top-1/2 translate-y-[-50%] flex items-center justify-end gap-[5px] pr-[15px]">
+      <div className="absolute z-50 top-0 left-0 w-[393px] h-[54px] flex items-center justify-between px-10" data-name="Status Bar">
+        {/* Left side (time) */}
+        <p className="font-sf-pro font-semibold text-[17px] leading-[22px] text-primary-neutral-50">
+          9:41
+        </p>
+
+        {/* Right side (icons) */}
+        <div className="flex items-center gap-[5px]">
           {/* Cellular Signal */}
-          <div className="relative w-[17px] h-[12px]">
-            <img alt="" className="block max-w-none size-full" src={assets.img6} />
-          </div>
+          <img alt="signal" className="w-[17px] h-[12px]" src={assets.img6} />
+
           {/* WiFi */}
-          <div className="relative w-[15.5px] h-[12px]">
-            <img alt="" className="block max-w-none size-full" src={assets.img5} />
-          </div>
+          <img alt="wifi" className="w-[15.5px] h-[12px]" src={assets.img5} />
+
           {/* Battery */}
-          <div className="relative flex items-center h-[12px]">
+          <div className="flex items-center h-[12px]">
             <div className="relative w-[22px] h-[11.5px] border border-white/40 rounded-[3px]">
-              <div className="absolute bg-white inset-[1.5px] rounded-[2px]" />
+              <div className="absolute inset-[1.5px] bg-white rounded-[2px]" />
             </div>
-            <div className="relative w-[1.5px] h-[4px] ml-[1px]">
-              <img alt="" className="block max-w-none size-full" src={assets.img4} />
-            </div>
+            <img alt="battery-cap" className="w-[1.5px] h-[4px] ml-[1px]" src={assets.img4} />
           </div>
         </div>
       </div>

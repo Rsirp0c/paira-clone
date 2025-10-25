@@ -4,6 +4,8 @@ import MobileFrame from './components/MobileFrame';
 import PeoplePage from './components/PeoplePage';
 import RequestPage from './components/RequestPage';
 import ProfileDetailPage from './components/ProfileDetailPage';
+import RequestDetailPage from './components/RequestDetailPage';
+import AIChatPage from './components/AIChatPage';
 import './index.css';
 
 function AppContent() {
@@ -12,13 +14,17 @@ function AppContent() {
 
   // Determine active tab based on route
   const isProfilePage = location.pathname.startsWith('/profile');
-  const activeTab = isProfilePage ? 'people' : (location.pathname === '/requests' ? 'request' : 'people');
+  const isRequestDetailPage = location.pathname.startsWith('/request/');
+  const isAIPage = location.pathname === '/ai';
+  const activeTab = isAIPage ? 'ai' : (isProfilePage ? 'people' : (isRequestDetailPage ? 'request' : (location.pathname === '/requests' ? 'request' : 'people')));
 
   const handleTabChange = (tab) => {
     if (tab === 'people') {
       navigate('/');
     } else if (tab === 'request') {
       navigate('/requests');
+    } else if (tab === 'ai') {
+      navigate('/ai');
     }
   };
 
@@ -30,6 +36,8 @@ function AppContent() {
             <Route path="/" element={<PeoplePage />} />
             <Route path="/requests" element={<RequestPage />} />
             <Route path="/profile/:id" element={<ProfileDetailPage />} />
+            <Route path="/request/:id" element={<RequestDetailPage />} />
+            <Route path="/ai" element={<AIChatPage />} />
           </Routes>
         </AnimatePresence>
       </MobileFrame>

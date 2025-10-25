@@ -13,33 +13,6 @@ const ProfileDetailPage = () => {
       transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
       className="bg-gradient-to-b z-20 from-[#1e1e1d] from-[5.826%] to-[#131313] to-[94.067%] h-full w-full relative overflow-y-auto rounded-[48px]"
     >
-      {/* Status Bar */}
-      <div className="absolute h-[54px] left-0 top-0 w-[393px] z-30" data-name="Status Bar">
-        <div className="absolute h-[54px] left-0 right-[64.25%] top-1/2 translate-y-[-50%]">
-          <p className="absolute font-sf-pro font-semibold inset-[33.96%_36.71%_25.3%_36.96%] leading-[22px] text-[17px] text-primary-neutral-50 text-center">
-            9:41
-          </p>
-        </div>
-        <div className="absolute h-[54px] left-[64.25%] right-0 top-1/2 translate-y-[-50%] flex items-center justify-end gap-[5px] pr-[15px]">
-          {/* Cellular Signal */}
-          <div className="relative w-[17px] h-[12px]">
-            <img alt="" className="block max-w-none size-full" src={assets.img6} />
-          </div>
-          {/* WiFi */}
-          <div className="relative w-[15.5px] h-[12px]">
-            <img alt="" className="block max-w-none size-full" src={assets.img5} />
-          </div>
-          {/* Battery */}
-          <div className="relative flex items-center h-[12px]">
-            <div className="relative w-[22px] h-[11.5px] border border-white/40 rounded-[3px]">
-              <div className="absolute bg-white inset-[1.5px] rounded-[2px]" />
-            </div>
-            <div className="relative w-[1.5px] h-[4px] ml-[1px]">
-              <img alt="" className="block max-w-none size-full" src={assets.img4} />
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Back Button */}
       <button

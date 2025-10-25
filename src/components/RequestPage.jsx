@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import * as assets from '../assets/figmaAssets';
 
 const RequestPage = () => {
+  const navigate = useNavigate();
+
   return (
     <motion.div
       initial={{ x: 15 }}
@@ -86,7 +89,10 @@ const RequestPage = () => {
       </div>
 
       {/* Card 1 (Main Request Card) */}
-      <div className="absolute bg-[#222124] border border-primary-neutral-700 cursor-pointer h-[424px] left-1/2 rounded-[36px] top-[205px] translate-x-[-50%] w-[353px] hover:border-primary-neutral-300 transition-colors">
+      <div
+        onClick={() => navigate('/request/1')}
+        className="absolute bg-[#222124] border border-primary-neutral-700 cursor-pointer h-[424px] left-1/2 rounded-[36px] top-[205px] translate-x-[-50%] w-[353px] hover:border-primary-neutral-300 transition-colors"
+      >
         <div className="box-border flex flex-col gap-3 h-[424px] items-center overflow-clip pb-5 pt-6 px-6 relative rounded-[inherit] w-[353px]">
           {/* Requester Profile Section */}
           <div className="bg-[rgba(195,185,185,0.1)] box-border flex flex-col gap-4 items-center justify-center px-3 py-2 relative rounded-[36px] shrink-0 w-full">

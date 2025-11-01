@@ -90,7 +90,7 @@ const RequestPage = () => {
 
       {/* Card 1 (Main Request Card) */}
       <div
-        onClick={() => navigate('/request/1')}
+        onClick={() => navigate('/request/chloe')}
         className="absolute bg-[#222124] border border-primary-neutral-700 cursor-pointer h-[424px] left-1/2 rounded-[36px] top-[205px] translate-x-[-50%] w-[353px] hover:border-primary-neutral-300 transition-colors"
       >
         <div className="box-border flex flex-col gap-3 h-[424px] items-center overflow-clip pb-5 pt-6 px-6 relative rounded-[inherit] w-[353px]">

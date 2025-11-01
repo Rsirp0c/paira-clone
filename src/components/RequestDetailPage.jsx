@@ -1,9 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import * as assets from '../assets/figmaAssets';
+import { requests } from '../data/mockProfiles';
+import imgVerifiedCheck from '../assets/icons/Verified Check.svg';
 
 const RequestDetailPage = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const request = requests[id] || requests.chloe; // Fallback to chloe if id not found
 
   return (
     <motion.div
@@ -71,11 +75,11 @@ const RequestDetailPage = () => {
           {/* Titles Section */}
           <div className="flex flex-col gap-2 items-start w-full mb-9">
             <h1 className="font-dm-serif leading-[1.2] text-xl text-primary-neutral-50 w-full">
-              Seeking Feedback on Behavioral Questions for Meta PD
+              {request.title}
             </h1>
             <div className="flex gap-2 items-start w-full">
               <p className="font-jakarta font-normal leading-[1.2] text-[13px] text-[#cecec9]">
-                Mock Interview
+                {request.type}
               </p>
             </div>
           </div>
@@ -83,66 +87,32 @@ const RequestDetailPage = () => {
           {/* Description */}
           <div className="flex gap-[10px] items-center justify-center w-full mb-9">
             <p className="flex-1 font-jakarta font-normal leading-[1.5] text-[13px] text-primary-neutral-50">
-              I've got a Meta Product Designer interview coming up, and the next round is all about behavior questions with a senior PM hiring manager. I'd love to practice with someone—peer or mentor—who can throw real interview-style prompts my way and give me honest feedback. Think STAR stories, communication tips, and tightening up answers. Totally happy to compensate you for your time ✨
+              {request.description}
             </p>
           </div>
 
           {/* Tags Section */}
           <div className="flex flex-col gap-2 items-start w-full mb-9">
-            {/* First Line */}
-            <div className="flex gap-2 items-start">
-              <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] rounded-full">
-                <div className="overflow-clip relative shrink-0 size-5">
-                  <div className="absolute inset-[5.21%]">
-                    <img alt="" className="block max-w-none size-full" src={assets.img11Request} />
-                  </div>
+            <div className="flex flex-wrap gap-2 items-start">
+              {request.tags.map((tag, index) => (
+                <div key={index} className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] rounded-full">
+                  <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50">
+                    {tag.label}
+                  </p>
                 </div>
-                <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50">
-                  Technology
-                </p>
-              </div>
-              <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] rounded-full">
-                <div className="overflow-clip relative shrink-0 size-5">
-                  <div className="absolute inset-[5.208%]">
-                    <img alt="" className="block max-w-none size-full" src={assets.img12Request} />
-                  </div>
-                </div>
-                <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50">
-                  Mentor
-                </p>
-              </div>
-            </div>
-            {/* Second Line */}
-            <div className="flex gap-2 items-start">
-              <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] rounded-full">
-                <div className="overflow-clip relative shrink-0 size-5">
-                  <div className="absolute inset-[5.208%]">
-                    <img alt="" className="block max-w-none size-full" src={assets.img13} />
-                  </div>
-                </div>
-                <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50">
-                  Remote
-                </p>
-              </div>
-              <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] rounded-full">
-                <div className="overflow-clip relative shrink-0 size-5">
-                  <div className="absolute inset-[5.208%]">
-                    <img alt="" className="block max-w-none size-full" src={assets.img14} />
-                  </div>
-                </div>
-                <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50">
-                  $50
-                </p>
-              </div>
+              ))}
             </div>
           </div>
 
           {/* Requester Card */}
-          <div className="bg-[#1e1e1d] border border-primary-neutral-900 box-border flex gap-4 items-center justify-center p-3 rounded-[20px] w-full cursor-pointer hover:border-primary-neutral-700 transition-colors">
+          <div
+            onClick={() => navigate(`/profile/${request.requester.id}`)}
+            className="bg-[#1e1e1d] border border-primary-neutral-900 box-border flex gap-4 items-center justify-center p-3 rounded-[20px] w-full cursor-pointer hover:border-primary-neutral-700 transition-colors"
+          >
             {/* Photo */}
             <div className="flex gap-[10px] items-center overflow-clip rounded-full shrink-0 w-20">
               <div className="relative w-20 h-20 rounded-full">
-                <img alt="Chloe Anderson" className="absolute h-[219.22%] left-[-29.76%] max-w-none top-[-19.12%] w-[146.34%] rounded-full object-cover" src={assets.imgImage67Request} />
+                <img alt={request.requester.name} className="w-full h-full rounded-full object-cover" src={request.requester.photo} />
               </div>
             </div>
             {/* Info */}
@@ -151,20 +121,18 @@ const RequestDetailPage = () => {
               <div className="flex flex-col gap-1 items-start w-full">
                 <div className="flex gap-1 items-center">
                   <p className="font-jakarta font-semibold leading-[1.2] text-base text-primary-neutral-50">
-                    Chloe Anderson
+                    {request.requester.name}
                   </p>
                   <div className="overflow-clip relative shrink-0 size-[22px]">
-                    <div className="absolute inset-[8.333%]">
-                      <img alt="Verified" className="block max-w-none size-full" src={assets.img10Request} />
-                    </div>
+                    <img alt="Verified" className="block size-full" src={imgVerifiedCheck} />
                   </div>
                 </div>
                 <p className="font-jakarta font-normal leading-[1.2] text-[13px] text-primary-neutral-50 w-full">
-                  Product Design Intern at Meta
+                  {request.requester.title}
                 </p>
               </div>
               <p className="font-jakarta font-normal leading-[1.2] text-[13px] text-primary-neutral-300">
-                San Francisco Bay Area
+                {request.requester.location}
               </p>
             </div>
           </div>

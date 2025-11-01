@@ -6,7 +6,7 @@ const PeoplePage = () => {
   const navigate = useNavigate();
 
   const handleProfileClick = () => {
-    navigate('/profile/1'); // Navigate to profile detail page
+    navigate('/profile/chloe'); // Navigate to Chloe Anderson's profile
   };
 
   return (

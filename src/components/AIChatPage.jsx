@@ -2,6 +2,14 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import SendIcon from '../assets/icons/Shape.svg';
+import imgImage99 from '../assets/images/imgImage99.png';
+import imgImage98 from '../assets/images/imgImage98.png';
+import imgVerifiedCheck from '../assets/icons/Verified Check.svg';
+import imgLike from '../assets/icons/Like.svg';
+import imgMenuDots from '../assets/icons/Menu Dots.svg';
+import imgAIIcon from '../assets/icons/AI Essentials Icon Set.svg';
+import imgBackArrow from '../assets/icons/Menu Dots (1).svg';
+import imgHeaderMenu from '../assets/icons/Button.svg';
 
 const AIChatPage = () => {
   const navigate = useNavigate();
@@ -15,18 +23,6 @@ const AIChatPage = () => {
     // Placeholder submit handling until backend connection exists.
     setMessage('');
   };
-
-  // Image URLs from Figma
-  const imgImage99 = "https://www.figma.com/api/mcp/asset/0005ea68-7389-40c6-b95b-2dd3f89d235d";
-  const imgImage98 = "https://www.figma.com/api/mcp/asset/2bc822b1-bc97-434d-8205-e2dfe2c8b0d5";
-  const imgVerifiedCheck = "https://www.figma.com/api/mcp/asset/9043f5aa-6313-4608-b70f-6ad9aaa619aa";
-  const imgVerifiedCheck2 = "https://www.figma.com/api/mcp/asset/f1c02b02-e160-45e6-92ab-5963e6d38280";
-  const imgLike = "https://www.figma.com/api/mcp/asset/2c914ce3-5326-4f43-93ea-d63c7a14df2f";
-  const imgMenuDots = "https://www.figma.com/api/mcp/asset/0e5f4661-de79-4054-81d1-edef3b82705d";
-  const imgAIIcon = "https://www.figma.com/api/mcp/asset/0408447e-f7d9-45ac-8979-138d1deb6c08";
-  const imgBackArrow = "https://www.figma.com/api/mcp/asset/5f88f181-f874-4753-a690-444b0c2a643b";
-  const imgHeaderMenu = "https://www.figma.com/api/mcp/asset/999e9a2c-d799-426d-8f0e-fdb287dfd58a";
-  const imgSendButton = "https://www.figma.com/api/mcp/asset/b7fa4e04-8a5f-403e-b92d-6b7c8814b462";
 
   return (
     <motion.div
@@ -44,9 +40,7 @@ const AIChatPage = () => {
           className="absolute flex gap-[10px] h-8 items-center justify-center left-5 rounded-full top-2 cursor-pointer hover:opacity-70 transition-opacity"
         >
           <div className="overflow-clip relative size-6">
-            <div className="absolute inset-[34.38%_17.71%]">
-              <img alt="Back" className="block max-w-none size-full" src={imgBackArrow} />
-            </div>
+            <img alt="Back" className="block size-full" src={imgBackArrow} />
           </div>
         </button>
 
@@ -55,7 +49,7 @@ const AIChatPage = () => {
             ASK AI
           </p>
           <div className="overflow-clip relative size-6">
-            <div className="absolute inset-[12.49%_13.54%_11.46%_14.57%]">
+            <div className="absolute">
               <img alt="AI Icon" className="block max-w-none size-full" src={imgAIIcon} />
             </div>
           </div>
@@ -64,9 +58,7 @@ const AIChatPage = () => {
         {/* Menu Button */}
         <button className="absolute flex gap-[10px] h-8 items-center justify-center right-5 rounded-full top-2 cursor-pointer hover:opacity-70 transition-opacity">
           <div className="overflow-clip relative size-6">
-            <div className="absolute inset-[41.67%_12.5%]">
-              <img alt="Menu" className="block max-w-none size-full" src={imgHeaderMenu} />
-            </div>
+            <img alt="Menu" className="block size-full" src={imgHeaderMenu} />
           </div>
         </button>
       </div>
@@ -200,7 +192,7 @@ const AIChatPage = () => {
                                 </p>
                                 <div className="overflow-clip relative size-4">
                                   <div className="absolute inset-[8.333%]">
-                                    <img alt="Verified" className="block max-w-none size-full" src={imgVerifiedCheck2} />
+                                    <img alt="Verified" className="block max-w-none size-full" src={imgVerifiedCheck} />
                                   </div>
                                 </div>
                               </div>
@@ -255,9 +247,7 @@ const AIChatPage = () => {
 
                 <button className="bg-[#1e1e1d] box-border flex gap-2 items-center px-2 py-1 rounded-lg hover:bg-[#2e2e2d] transition-colors cursor-pointer">
                   <div className="overflow-clip relative size-4">
-                    <div className="absolute inset-[38.54%_9.38%]">
-                      <img alt="Menu" className="block max-w-none size-full" src={imgMenuDots} />
-                    </div>
+                    <img alt="Menu" className="block size-full" src={imgMenuDots} />
                   </div>
                 </button>
               </div>

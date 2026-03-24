@@ -1,5 +1,9 @@
 # Paira Branch Directory
 
+## Agent Instructions
+
+If you are a coding agent working in this repository, read `AGENTS.md` before making changes. It defines the default scope of work, which parts of the codebase are off-limits unless explicitly requested, the validation command, and the expected Git workflow.
+
 This project now serves two jobs:
 
 - `/` is an internal landing page that lists repository branches and their preview URLs.
@@ -73,6 +77,7 @@ app-clone/
 │   ├── main.jsx                 # Entry point
 │   └── index.css                # Global styles & Tailwind imports
 ├── index.html                   # HTML template
+├── AGENTS.md                    # Instructions for coding agents working in this repo
 ├── vercel.json                  # SPA rewrites for /app routes
 ├── vite.config.js
 ├── tailwind.config.js

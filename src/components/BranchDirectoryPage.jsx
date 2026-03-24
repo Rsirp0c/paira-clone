@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import pairaLogo from '../assets/icons/Paira-logo.svg';
 
+const emphasisClassName = 'font-semibold text-primary-neutral-50';
+
 function BranchCard({ branch }) {
   return (
     <article className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
@@ -55,6 +57,10 @@ function BranchCard({ branch }) {
 }
 
 function BranchDirectoryPage() {
+  const cloneCommand = 'git clone https://github.com/Rsirp0c/paira-clone.git';
+  const [copyFeedback, setCopyFeedback] = useState('');
+  const [isGettingStartedOpen, setIsGettingStartedOpen] = useState(false);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [state, setState] = useState({
     status: 'loading',
@@ -115,6 +121,17 @@ function BranchDirectoryPage() {
     branch.name.toLowerCase().includes(searchQuery.trim().toLowerCase()),
   );
 
+  async function handleCopyCloneCommand() {
+    try {
+      await navigator.clipboard.writeText(cloneCommand);
+      setCopyFeedback('Copied');
+      window.setTimeout(() => setCopyFeedback(''), 2000);
+    } catch {
+      setCopyFeedback('Copy failed');
+      window.setTimeout(() => setCopyFeedback(''), 2000);
+    }
+  }
+
   return (
     <main className="min-h-screen bg-[#060606] text-primary-neutral-50">
       <div className="relative overflow-hidden">
@@ -122,7 +139,7 @@ function BranchDirectoryPage() {
         <div className="absolute right-[-5%] top-24 h-80 w-80 rounded-full bg-[#fbff5c]/10 blur-3xl" />
 
         <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-10 sm:px-8 lg:px-10">
-          <div className="mx-auto mb-14 w-full max-w-4xl flex-col gap-8 xl:max-w-5xl lg:flex lg:flex-row lg:items-end lg:justify-between">
+          <div className="mx-auto mb-14 w-full max-w-4xl space-y-6 xl:max-w-5xl">
             <div className="max-w-3xl">
               <div className="flex items-center gap-4">
                 <img alt="Paira logo" className="h-11 w-11 shrink-0 sm:h-14 sm:w-14" src={pairaLogo} />
@@ -130,6 +147,89 @@ function BranchDirectoryPage() {
                   mini Paira
                 </h1>
               </div>
+            </div>
+            <div className="w-full rounded-[24px] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
+              <button
+                aria-expanded={isGettingStartedOpen}
+                className="flex w-full items-center justify-between gap-4 text-left"
+                onClick={() => setIsGettingStartedOpen((open) => !open)}
+                type="button"
+              >
+                <span className="font-jakarta text-sm font-semibold text-primary-neutral-50">Getting started</span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/20">
+                  <svg
+                    aria-hidden="true"
+                    className={`h-4 w-4 text-primary-neutral-50 transition-transform ${isGettingStartedOpen ? 'rotate-180' : 'rotate-90'}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+                  </svg>
+                </span>
+              </button>
+              {isGettingStartedOpen ? (
+                <div className="mt-4 space-y-4 font-jakarta text-base leading-7 tracking-[0.015em] text-primary-neutral-300">
+                <p>
+                  Start by cloning the repo locally. The current repo is
+                  {' '}
+                  <span className={`break-all ${emphasisClassName}`}>https://github.com/Rsirp0c/paira-clone.git</span>
+                  .
+                </p>
+                <div className="rounded-[20px] border border-white/10 bg-black/25 p-4">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <code className="block break-all font-jakarta text-sm leading-6 tracking-[0.02em] text-primary-neutral-50">
+                      {cloneCommand}
+                    </code>
+                    <button
+                      className="rounded-full border border-white/15 px-4 py-2 font-jakarta text-xs font-semibold uppercase tracking-[0.18em] text-primary-neutral-50 transition hover:border-white/30 hover:bg-white/5"
+                      onClick={handleCopyCloneCommand}
+                      type="button"
+                    >
+                      {copyFeedback || 'Copy'}
+                    </button>
+                  </div>
+                </div>
+                <p>
+                  Open the cloned folder in
+                  {' '}
+                  <span className={emphasisClassName}>Codex</span>
+                  ,
+                  {' '}
+                  <span className={emphasisClassName}>Cloud Code</span>
+                  ,
+                  {' '}
+                  or
+                  {' '}
+                  <span className={emphasisClassName}>VS Code</span>
+                  , then work directly from prompts instead of navigating everything by hand.
+                </p>
+                <p>
+                  Good starter prompts are
+                  {' '}
+                  <span className={emphasisClassName}>start the app</span>
+                  ,
+                  {' '}
+                  <span className={emphasisClassName}>make this change</span>
+                  ,
+                  {' '}
+                  <span className={emphasisClassName}>fix this bug</span>
+                  , or
+                  {' '}
+                  <span className={emphasisClassName}>update this page</span>
+                  .
+                </p>
+                <p>
+                  When you are ready to save the current version, type something like
+                  {' '}
+                  <span className={emphasisClassName}>commit this edit</span>
+                  {' '}
+                  or
+                  {' '}
+                  <span className={emphasisClassName}>create a new version of this clone</span>
+                  .
+                </p>
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -153,14 +253,28 @@ function BranchDirectoryPage() {
 
           {state.status === 'ready' ? (
             <section className="mx-auto w-full max-w-4xl space-y-4 xl:max-w-5xl">
-              <div className="rounded-[24px] border border-white/10 bg-white/5 p-3 backdrop-blur-xl">
-                <input
-                  className="w-full bg-transparent px-3 py-2 font-jakarta text-sm text-primary-neutral-50 outline-none placeholder:text-primary-neutral-300"
-                  onChange={(event) => setSearchQuery(event.target.value)}
-                  placeholder="Search branches"
-                  type="search"
-                  value={searchQuery}
-                />
+              <div className="border-b border-white/70 pb-5">
+                <div className="relative flex items-center gap-4">
+                  <svg aria-hidden="true" className="h-7 w-7 shrink-0 text-primary-neutral-300" fill="none" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="2" />
+                    <path d="M16 16L21 21" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
+                  </svg>
+                  {!isSearchFocused && !searchQuery ? (
+                    <div className="pointer-events-none absolute left-11 flex items-center gap-1 font-dm-serif text-3xl text-primary-neutral-300 sm:text-[2rem]">
+                      <span>Search branches...</span>
+                      <span aria-hidden="true" className="search-idle-caret inline-block h-8 w-[2px] bg-[#fbff5c]" />
+                    </div>
+                  ) : null}
+                  <input
+                    className="w-full bg-transparent font-dm-serif text-3xl text-primary-neutral-50 caret-transparent outline-none placeholder:text-transparent sm:text-[2rem]"
+                    onBlur={() => setIsSearchFocused(false)}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    onFocus={() => setIsSearchFocused(true)}
+                    placeholder="Search branches..."
+                    type="search"
+                    value={searchQuery}
+                  />
+                </div>
               </div>
 
               {payload.warnings?.length ? (

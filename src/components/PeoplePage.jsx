@@ -55,7 +55,7 @@ const PeoplePage = () => {
       </div>
 
       {/* Card 3 (Background) */}
-      <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*0.0523359552025795)+(var(--transform-inner-height)*0.9986295104026794)))] items-center justify-center left-[calc(50%+0.31px)] top-[148px] translate-x-[-50%] w-[calc(1px*((var(--transform-inner-height)*0.0523359552025795)+(var(--transform-inner-width)*0.9986295104026794)))]">
+      <div className="absolute flex h-[318px] items-center justify-center left-[calc(50%+0.31px)] top-[148px] translate-x-[-50%] w-[270px]">
         <div className="flex-none rotate-[3deg]">
           <div className="bg-base-card border border-[rgba(94,94,92,0.6)] h-[305px] relative rounded-[36px] w-[254px]">
             <div className="box-border flex flex-col gap-4 h-[305px] items-center overflow-clip p-5 relative rounded-[inherit] w-[254px]">
@@ -66,7 +66,7 @@ const PeoplePage = () => {
       </div>
 
       {/* Card 2 (Middle) */}
-      <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*0.06975647062063217)+(var(--transform-inner-height)*0.9975640773773193)))] items-center justify-center left-[43px] top-[175px] w-[calc(1px*((var(--transform-inner-height)*0.06975647062063217)+(var(--transform-inner-width)*0.9975640773773193)))]">
+      <div className="absolute flex h-[380px] items-center justify-center left-[43px] top-[175px] w-[325px]">
         <div className="flex-none rotate-[356deg]">
           <div className="bg-base-card border border-[rgba(94,94,92,0.8)] h-[360px] relative rounded-[36px] w-[300px]">
             <div className="box-border flex flex-col gap-4 h-[360px] items-center overflow-clip p-5 relative rounded-[inherit] w-[300px]">

@@ -120,11 +120,11 @@ function CloneAppShell() {
         <MobileFrame activeTab={activeTab} onTabChange={handleTabChange}>
           <AnimatePresence initial={false} mode="wait">
             <Routes location={location} key={location.pathname}>
-              <Route element={<PeoplePage />} path="/app" />
-              <Route element={<RequestPage />} path="/app/requests" />
-              <Route element={<ProfileDetailPage />} path="/app/profile/:id" />
-              <Route element={<RequestDetailPage />} path="/app/request/:id" />
-              <Route element={<AIChatPage />} path="/app/ai" />
+              <Route element={<PeoplePage />} index />
+              <Route element={<RequestPage />} path="requests" />
+              <Route element={<ProfileDetailPage />} path="profile/:id" />
+              <Route element={<RequestDetailPage />} path="request/:id" />
+              <Route element={<AIChatPage />} path="ai" />
             </Routes>
           </AnimatePresence>
         </MobileFrame>

@@ -1,3 +1,5 @@
+import { execSync } from 'node:child_process';
+
 const DEFAULT_APP_BASE_PATH = '/app';
 const DEFAULT_PRIMARY_BRANCH = 'main';
 const VERCEL_API_BASE_URL = 'https://api.vercel.com/v6';
@@ -28,22 +30,70 @@ function joinUrl(baseUrl, pathName) {
   return `${normalizedBaseUrl}${normalizedPath}`;
 }
 
-function resolveRepoDetails() {
-  const owner = process.env.GITHUB_REPO_OWNER || process.env.VERCEL_GIT_REPO_OWNER;
-  const name = process.env.GITHUB_REPO_NAME || process.env.VERCEL_GIT_REPO_SLUG;
+function parseGithubRemote(remoteUrl) {
+  if (!remoteUrl) {
+    return null;
+  }
+
+  const normalizedRemoteUrl = remoteUrl.trim().replace(/\.git$/, '');
+  const sshMatch = normalizedRemoteUrl.match(/^git@github\.com:(.+?)\/(.+)$/);
+
+  if (sshMatch) {
+    return {
+      owner: sshMatch[1],
+      name: sshMatch[2],
+    };
+  }
+
+  try {
+    const url = new URL(normalizedRemoteUrl);
+
+    if (url.hostname !== 'github.com') {
+      return null;
+    }
+
+    const [, owner, name] = url.pathname.split('/');
+
+    if (!owner || !name) {
+      return null;
+    }
+
+    return { owner, name };
+  } catch {
+    return null;
+  }
+}
+
+function resolveRepoFromGitRemote() {
+  try {
+    const remoteUrl = execSync('git remote get-url origin', {
+      stdio: ['ignore', 'pipe', 'ignore'],
+    })
+      .toString()
+      .trim();
+
+    return parseGithubRemote(remoteUrl);
+  } catch {
+    return null;
+  }
+}
+
+function resolveRepoDetails(env) {
+  const owner = env.GITHUB_REPO_OWNER || env.VERCEL_GIT_REPO_OWNER;
+  const name = env.GITHUB_REPO_NAME || env.VERCEL_GIT_REPO_SLUG;
 
   if (!owner || !name) {
-    return null;
+    return resolveRepoFromGitRemote();
   }
 
   return { owner, name };
 }
 
-function resolveVercelProjectDetails() {
-  const projectId = process.env.VERCEL_PROJECT_ID || process.env.VERCEL_GIT_REPO_SLUG;
-  const teamId = process.env.VERCEL_TEAM_ID || process.env.VERCEL_ORG_ID || null;
-  const teamSlug = process.env.VERCEL_TEAM_SLUG || null;
-  const token = process.env.VERCEL_TOKEN || process.env.VERCEL_API_TOKEN || null;
+function resolveVercelProjectDetails(env) {
+  const projectId = env.VERCEL_PROJECT_ID || env.VERCEL_GIT_REPO_SLUG;
+  const teamId = env.VERCEL_TEAM_ID || env.VERCEL_ORG_ID || null;
+  const teamSlug = env.VERCEL_TEAM_SLUG || null;
+  const token = env.VERCEL_TOKEN || env.VERCEL_API_TOKEN || null;
 
   return {
     projectId,
@@ -87,8 +137,8 @@ async function fetchLatestDeploymentForBranch(branchName, vercelProject) {
   return Array.isArray(payload.deployments) ? payload.deployments[0] ?? null : null;
 }
 
-async function fetchBranches(repo) {
-  const token = process.env.GITHUB_TOKEN;
+async function fetchBranches(repo, env) {
+  const token = env.GITHUB_TOKEN;
   const headers = {
     Accept: 'application/vnd.github+json',
     'User-Agent': 'paira-branch-directory',
@@ -146,39 +196,48 @@ function sortBranches(branches, primaryBranch) {
 
 export default async function handler(request, response) {
   try {
-    const repo = resolveRepoDetails();
-    const vercelProject = resolveVercelProjectDetails();
+    const payload = await getBranchPreviews(process.env);
+    response.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
+    response.status(200).json(payload);
+  } catch (error) {
+    response.status(500).json({
+      error: error instanceof Error ? error.message : 'Unexpected error while loading branch previews.',
+    });
+  }
+}
 
-    if (!repo) {
-      response.status(500).json({
-        error:
-          'Missing repository metadata. Set GITHUB_REPO_OWNER and GITHUB_REPO_NAME, or deploy from a GitHub-connected Vercel project.',
-      });
-      return;
-    }
+export async function getBranchPreviews(env = process.env) {
+  const repo = resolveRepoDetails(env);
+  const vercelProject = resolveVercelProjectDetails(env);
 
-    const appBasePath = process.env.APP_BASE_PATH || DEFAULT_APP_BASE_PATH;
-    const primaryBranch = process.env.GITHUB_PRIMARY_BRANCH || DEFAULT_PRIMARY_BRANCH;
-    const productionRootUrl = withProtocol(process.env.VERCEL_PROJECT_PRODUCTION_URL);
-    const warnings = [];
+  if (!repo) {
+    throw new Error(
+      'Missing repository metadata. Set GITHUB_REPO_OWNER and GITHUB_REPO_NAME, or deploy from a GitHub-connected Vercel project.',
+    );
+  }
 
-    if (!vercelProject.projectId) {
-      warnings.push(
-        'VERCEL_PROJECT_ID is not set, so preview URLs can only be resolved for the production branch.',
-      );
-    }
+  const appBasePath = env.APP_BASE_PATH || DEFAULT_APP_BASE_PATH;
+  const primaryBranch = env.GITHUB_PRIMARY_BRANCH || DEFAULT_PRIMARY_BRANCH;
+  const productionRootUrl = withProtocol(env.VERCEL_PROJECT_PRODUCTION_URL);
+  const warnings = [];
 
-    if (!vercelProject.token) {
-      warnings.push(
-        'VERCEL_TOKEN is not set, so preview URLs can only be resolved for the production branch.',
-      );
-    }
+  if (!vercelProject.projectId) {
+    warnings.push(
+      'VERCEL_PROJECT_ID is not set, so preview URLs can only be resolved for the production branch.',
+    );
+  }
 
-    const branches = await fetchBranches(repo);
-    const sortedBranches = await Promise.all(
-      sortBranches(branches, primaryBranch).map(async (branch) => {
-        const latestDeployment = await fetchLatestDeploymentForBranch(branch.name, vercelProject);
-        const previewRootUrl = latestDeployment?.url ? withProtocol(latestDeployment.url) : null;
+  if (!vercelProject.token) {
+    warnings.push(
+      'VERCEL_TOKEN is not set, so preview URLs can only be resolved for the production branch.',
+    );
+  }
+
+  const branches = await fetchBranches(repo, env);
+  const sortedBranches = await Promise.all(
+    sortBranches(branches, primaryBranch).map(async (branch) => {
+      const latestDeployment = await fetchLatestDeploymentForBranch(branch.name, vercelProject);
+      const previewRootUrl = latestDeployment?.url ? withProtocol(latestDeployment.url) : null;
       const isPrimary = branch.name === primaryBranch;
       const rootUrl = isPrimary && productionRootUrl ? productionRootUrl : previewRootUrl;
       const appUrl = rootUrl ? joinUrl(rootUrl, appBasePath) : null;
@@ -195,26 +254,20 @@ export default async function handler(request, response) {
         deploymentState: latestDeployment?.state ?? null,
         deploymentCreatedAt: latestDeployment?.createdAt ?? latestDeployment?.created ?? null,
       };
-      }),
-    );
+    }),
+  );
 
-    response.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
-    response.status(200).json({
-      appBasePath,
-      generatedAt: new Date().toISOString(),
-      primaryBranch,
-      repo,
-      vercelProject: {
-        projectId: vercelProject.projectId ?? null,
-        teamId: vercelProject.teamId,
-        teamSlug: vercelProject.teamSlug,
-      },
-      warnings,
-      branches: sortedBranches,
-    });
-  } catch (error) {
-    response.status(500).json({
-      error: error instanceof Error ? error.message : 'Unexpected error while loading branch previews.',
-    });
-  }
+  return {
+    appBasePath,
+    generatedAt: new Date().toISOString(),
+    primaryBranch,
+    repo,
+    vercelProject: {
+      projectId: vercelProject.projectId ?? null,
+      teamId: vercelProject.teamId,
+      teamSlug: vercelProject.teamSlug,
+    },
+    warnings,
+    branches: sortedBranches,
+  };
 }

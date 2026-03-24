@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-
-function formatBranchLabel(branchName) {
-  return branchName.replace(/[-_/]+/g, ' ');
-}
+import pairaLogo from '../assets/icons/Paira-logo.svg';
 
 function BranchCard({ branch }) {
   return (
@@ -11,18 +8,12 @@ function BranchCard({ branch }) {
 
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
-          <p className="mb-2 font-jakarta text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-neutral-300">
-            {branch.isPrimary ? 'Production branch' : 'Preview branch'}
-          </p>
           <h2 className="font-dm-serif text-3xl leading-none text-primary-neutral-50">{branch.name}</h2>
-          <p className="mt-2 max-w-sm font-jakarta text-sm text-primary-neutral-300">
-            {formatBranchLabel(branch.name)}
-          </p>
         </div>
 
         {branch.isPrimary ? (
           <span className="rounded-full border border-[#fbff5c]/40 bg-[#fbff5c]/10 px-3 py-1 font-jakarta text-xs font-semibold text-[#fbff5c]">
-            Live
+            Pinned
           </span>
         ) : null}
       </div>
@@ -49,17 +40,6 @@ function BranchCard({ branch }) {
             </a>
           ) : null}
 
-          {branch.rootUrl ? (
-            <a
-              className="rounded-full border border-white/15 px-4 py-2 font-jakarta text-sm font-semibold text-primary-neutral-50 transition hover:border-white/30 hover:bg-white/5"
-              href={branch.rootUrl}
-              rel="noreferrer"
-              target="_blank"
-            >
-              Open root
-            </a>
-          ) : null}
-
           <a
             className="rounded-full border border-white/15 px-4 py-2 font-jakarta text-sm font-semibold text-primary-neutral-50 transition hover:border-white/30 hover:bg-white/5"
             href={branch.githubUrl}
@@ -75,6 +55,7 @@ function BranchCard({ branch }) {
 }
 
 function BranchDirectoryPage() {
+  const [searchQuery, setSearchQuery] = useState('');
   const [state, setState] = useState({
     status: 'loading',
     error: '',
@@ -87,7 +68,17 @@ function BranchDirectoryPage() {
     async function loadBranchPreviews() {
       try {
         const response = await fetch('/api/branch-previews');
-        const payload = await response.json();
+        const contentType = response.headers.get('content-type') || '';
+        let payload = null;
+
+        if (contentType.includes('application/json')) {
+          payload = await response.json();
+        } else {
+          const rawResponse = await response.text();
+          throw new Error(
+            `Expected JSON from /api/branch-previews, received ${contentType || 'an unknown content type'}: ${rawResponse.slice(0, 120)}`,
+          );
+        }
 
         if (!response.ok) {
           throw new Error(payload.error || 'Failed to load branch previews.');
@@ -120,6 +111,9 @@ function BranchDirectoryPage() {
 
   const payload = state.payload;
   const branches = payload?.branches ?? [];
+  const filteredBranches = branches.filter((branch) =>
+    branch.name.toLowerCase().includes(searchQuery.trim().toLowerCase()),
+  );
 
   return (
     <main className="min-h-screen bg-[#060606] text-primary-neutral-50">
@@ -128,53 +122,16 @@ function BranchDirectoryPage() {
         <div className="absolute right-[-5%] top-24 h-80 w-80 rounded-full bg-[#fbff5c]/10 blur-3xl" />
 
         <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-10 sm:px-8 lg:px-10">
-          <div className="mb-14 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="mx-auto mb-14 w-full max-w-4xl flex-col gap-8 xl:max-w-5xl lg:flex lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <p className="mb-4 font-jakarta text-[11px] font-semibold uppercase tracking-[0.28em] text-primary-neutral-300">
-                Internal Branch Index
-              </p>
-              <h1 className="max-w-2xl font-dm-serif text-5xl leading-[0.95] text-primary-neutral-50 sm:text-6xl">
-                One landing page for every branch preview in this project.
-              </h1>
-              <p className="mt-6 max-w-2xl font-jakarta text-base leading-7 text-primary-neutral-300">
-                Root now acts as the internal directory. The existing iOS clone lives at <span className="font-semibold text-primary-neutral-50">/app</span>, and each branch card links to its matching preview deployment.
-              </p>
+              <div className="flex items-center gap-4">
+                <img alt="Paira logo" className="h-11 w-11 shrink-0 sm:h-14 sm:w-14" src={pairaLogo} />
+                <h1 className="max-w-2xl font-dm-serif text-5xl leading-[0.95] text-primary-neutral-50 sm:text-6xl">
+                  mini Paira
+                </h1>
+              </div>
             </div>
-
-            <a
-              className="inline-flex w-fit rounded-full border border-white/15 px-5 py-3 font-jakarta text-sm font-semibold text-primary-neutral-50 transition hover:border-white/30 hover:bg-white/5"
-              href="/app"
-            >
-              Open production app
-            </a>
           </div>
-
-          <section className="mb-10 grid gap-4 lg:grid-cols-3">
-            <div className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <p className="mb-2 font-jakarta text-[11px] font-semibold uppercase tracking-[0.2em] text-primary-neutral-300">
-                Repository
-              </p>
-              <p className="font-jakarta text-lg font-semibold text-primary-neutral-50">
-                {payload ? `${payload.repo.owner}/${payload.repo.name}` : 'Loading'}
-              </p>
-            </div>
-
-            <div className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <p className="mb-2 font-jakarta text-[11px] font-semibold uppercase tracking-[0.2em] text-primary-neutral-300">
-                Branches discovered
-              </p>
-              <p className="font-jakarta text-lg font-semibold text-primary-neutral-50">{branches.length}</p>
-            </div>
-
-            <div className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <p className="mb-2 font-jakarta text-[11px] font-semibold uppercase tracking-[0.2em] text-primary-neutral-300">
-                App base path
-              </p>
-              <p className="font-jakarta text-lg font-semibold text-primary-neutral-50">
-                {payload?.appBasePath ?? '/app'}
-              </p>
-            </div>
-          </section>
 
           {state.status === 'loading' ? (
             <section className="rounded-[32px] border border-white/10 bg-white/5 p-10 backdrop-blur-xl">
@@ -195,7 +152,17 @@ function BranchDirectoryPage() {
           ) : null}
 
           {state.status === 'ready' ? (
-            <section className="space-y-4">
+            <section className="mx-auto w-full max-w-4xl space-y-4 xl:max-w-5xl">
+              <div className="rounded-[24px] border border-white/10 bg-white/5 p-3 backdrop-blur-xl">
+                <input
+                  className="w-full bg-transparent px-3 py-2 font-jakarta text-sm text-primary-neutral-50 outline-none placeholder:text-primary-neutral-300"
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  placeholder="Search branches"
+                  type="search"
+                  value={searchQuery}
+                />
+              </div>
+
               {payload.warnings?.length ? (
                 <div className="rounded-[28px] border border-[#fbff5c]/20 bg-[#fbff5c]/5 p-5">
                   <p className="font-jakarta text-sm leading-6 text-primary-neutral-50">{payload.warnings[0]}</p>
@@ -203,10 +170,16 @@ function BranchDirectoryPage() {
               ) : null}
 
               <div className="grid gap-4 xl:grid-cols-2">
-                {branches.map((branch) => (
+                {filteredBranches.map((branch) => (
                   <BranchCard branch={branch} key={branch.name} />
                 ))}
               </div>
+
+              {filteredBranches.length === 0 ? (
+                <div className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+                  <p className="font-jakarta text-sm text-primary-neutral-300">No branches match that search.</p>
+                </div>
+              ) : null}
             </section>
           ) : null}
         </div>

@@ -42,7 +42,7 @@ npm run dev
 
 The app will open at `http://localhost:3000`.
 
-Note: the branch-directory API is implemented as a Vercel serverless function in `api/branch-previews.js`, so the landing page branch list is intended to run in Vercel deployments.
+The root branch directory also works in local Vite dev. For local preview resolution, set `VERCEL_TOKEN` and `VERCEL_PROJECT_ID` in `.env.local`. Repo metadata is inferred from `git remote origin` when it is not set explicitly.
 
 ### Build
 

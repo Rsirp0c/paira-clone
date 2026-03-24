@@ -5,7 +5,7 @@ const TabBar = ({ className, onTabClick }) => {
     <div className={className} data-name="Type=Home" data-node-id="901:22322">
       <button
         onClick={() => onTabClick && onTabClick('people')}
-        className="backdrop-blur-[6.9px] backdrop-filter box-border flex gap-2 items-center p-2 rounded-full shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+        className="backdrop-blur-[6.9px] backdrop-filter box-border flex gap-2 items-center rounded-full border border-[rgba(251,255,92,0.14)] bg-[rgba(251,255,92,0.05)] p-2 shrink-0 cursor-pointer transition-all hover:opacity-80 hover:border-[rgba(251,255,92,0.3)]"
       >
         <div className="overflow-clip relative shrink-0 size-7" data-name="Notes">
           <div className="absolute inset-[28.71%_35.32%_8.34%_8.33%]">
@@ -18,7 +18,7 @@ const TabBar = ({ className, onTabClick }) => {
       </button>
       <button
         onClick={() => onTabClick && onTabClick('ai')}
-        className="backdrop-blur-[6.9px] backdrop-filter box-border flex gap-2 items-center p-2 rounded-full shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+        className="backdrop-blur-[6.9px] backdrop-filter box-border flex gap-2 items-center rounded-full border border-[rgba(251,255,92,0.14)] bg-[rgba(251,255,92,0.05)] p-2 shrink-0 cursor-pointer transition-all hover:opacity-80 hover:border-[rgba(251,255,92,0.3)]"
       >
         <div className="overflow-clip relative shrink-0 size-7" data-name="Chat Round Line">
           <div className="absolute inset-[5.208%]">
@@ -28,7 +28,7 @@ const TabBar = ({ className, onTabClick }) => {
       </button>
       <button
         onClick={() => onTabClick && onTabClick('profile')}
-        className="backdrop-blur-[6.9px] backdrop-filter box-border flex gap-2 items-center p-2 rounded-full shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+        className="backdrop-blur-[6.9px] backdrop-filter box-border flex gap-2 items-center rounded-full border border-[rgba(251,255,92,0.14)] bg-[rgba(251,255,92,0.05)] p-2 shrink-0 cursor-pointer transition-all hover:opacity-80 hover:border-[rgba(251,255,92,0.3)]"
       >
         <div className="overflow-clip relative shrink-0 size-7" data-name="User">
           <div className="absolute inset-[5.21%_13.54%]">

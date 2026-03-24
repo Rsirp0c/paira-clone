@@ -4,11 +4,14 @@ import * as assets from '../assets/figmaAssets';
 
 const MobileFrame = ({ activeTab, onTabChange, children }) => {
   return (
-    <div className="overflow-clip relative rounded-[48px] w-[393px] h-[852px] bg-[#10100F]" data-name="Mobile Frame">
+    <div
+      className="overflow-clip relative rounded-[48px] w-[393px] h-[852px] bg-[radial-gradient(circle_at_top,_rgba(251,255,92,0.16),_rgba(16,16,15,0.96)_34%,_#10100F_72%)] border border-[rgba(251,255,92,0.45)] shadow-[0_0_0_1px_rgba(251,255,92,0.12),0_22px_70px_rgba(251,255,92,0.14)]"
+      data-name="Mobile Frame"
+    >
       {/* Tab Bar */}
       {activeTab !== 'ai' && (
         <TabBar
-          className="absolute bg-primary-neutral-950 bottom-0 box-border flex items-center justify-between left-0 pb-7 pt-2 px-11 shadow-[0px_-10px_40px_0px_rgba(0,0,0,0.1)] w-[393px] z-40"
+          className="absolute bottom-0 left-0 z-40 box-border flex w-[393px] items-center justify-between border-t border-[rgba(251,255,92,0.18)] bg-[linear-gradient(180deg,rgba(30,30,29,0.94),rgba(41,40,15,0.98))] pb-7 pt-2 px-11 shadow-[0px_-10px_40px_0px_rgba(0,0,0,0.18)]"
           onTabClick={onTabChange}
         />
       )}
@@ -49,7 +52,7 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
 
       {/* Top Navigation */}
       <div className="absolute flex gap-5 items-center left-1/2 top-[66px] translate-x-[-50%] z-20">
-        <div className="bg-[rgba(30,30,29,0.4)] border border-primary-neutral-900 h-10 relative rounded-[24px] shrink-0 w-64">
+        <div className="bg-[rgba(57,56,20,0.58)] border border-[rgba(251,255,92,0.28)] h-10 relative rounded-[24px] shrink-0 w-64 shadow-[0_0_24px_rgba(251,255,92,0.08)]">
           <div className="box-border flex gap-6 h-10 items-center overflow-clip px-3 py-0 relative rounded-[inherit] w-64">
             <div className="flex flex-[1_0_0] h-full items-center min-h-px min-w-px relative rounded-[72px] shrink-0">
               {/* People Tab */}
@@ -60,7 +63,7 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
                 <motion.p
                   animate={{
                     fontWeight: activeTab === 'people' ? 600 : 400,
-                    color: activeTab === 'people' ? 'rgb(250, 250, 250)' : 'rgb(212, 212, 210)'
+                    color: activeTab === 'people' ? 'rgb(251, 255, 92)' : 'rgb(212, 212, 210)'
                   }}
                   transition={{ duration: 0.15 }}
                   className="font-jakarta leading-[1.2] text-sm"
@@ -86,7 +89,7 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
                 <motion.p
                   animate={{
                     fontWeight: activeTab === 'request' ? 600 : 400,
-                    color: activeTab === 'request' ? 'rgb(250, 250, 250)' : 'rgb(212, 212, 210)'
+                    color: activeTab === 'request' ? 'rgb(251, 255, 92)' : 'rgb(212, 212, 210)'
                   }}
                   transition={{ duration: 0.15 }}
                   className="font-jakarta leading-[1.2] text-sm"
@@ -108,7 +111,7 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
         </div>
 
         {/* Settings Button */}
-        <button className="bg-[rgba(30,30,29,0.4)] border border-primary-neutral-900 box-border flex gap-[10px] items-center justify-center p-[6px] relative rounded-full shrink-0 size-11 cursor-pointer hover:bg-[rgba(30,30,29,0.6)] transition-colors">
+        <button className="bg-[rgba(57,56,20,0.58)] border border-[rgba(251,255,92,0.28)] box-border flex gap-[10px] items-center justify-center p-[6px] relative rounded-full shrink-0 size-11 cursor-pointer shadow-[0_0_18px_rgba(251,255,92,0.08)] transition-colors hover:bg-[rgba(70,68,22,0.72)]">
           <div className="overflow-clip relative rounded-[5px] shrink-0 size-[22px]">
             <div className="absolute inset-[13.54%_5.21%]">
               <img alt="" className="block max-w-none size-full" src={assets.img15} />

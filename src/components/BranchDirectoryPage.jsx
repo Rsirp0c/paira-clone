@@ -234,7 +234,7 @@ function BranchDirectoryPage() {
           </div>
 
           {state.status === 'loading' ? (
-            <section className="rounded-[32px] border border-white/10 bg-white/5 p-10 backdrop-blur-xl">
+            <section className="mx-auto w-full max-w-4xl xl:max-w-5xl">
               <p className="font-jakarta text-base text-primary-neutral-300">Loading branch previews...</p>
             </section>
           ) : null}

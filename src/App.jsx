@@ -2,7 +2,6 @@ import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import {
   BrowserRouter,
-  Link,
   Navigate,
   Route,
   Routes,
@@ -20,6 +19,7 @@ import RequestPage from './components/RequestPage';
 import './index.css';
 
 function CloneAppShell() {
+  const productionLandingUrl = 'https://paira-clone.vercel.app/';
   const location = useLocation();
   const navigate = useNavigate();
   const [uiScale, setUiScale] = useState(1);
@@ -89,12 +89,15 @@ function CloneAppShell() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#080807] px-6 py-12">
-      <Link
-        className="fixed left-5 top-5 z-[100] rounded-full border border-white/10 bg-black/50 px-4 py-2 font-jakarta text-xs font-semibold uppercase tracking-[0.2em] text-primary-neutral-50 backdrop-blur"
-        to="/"
+      <a
+        className="fixed left-5 top-5 z-[100] inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-4 py-2 font-jakarta text-xs font-semibold uppercase tracking-[0.2em] text-primary-neutral-50 backdrop-blur"
+        href={productionLandingUrl}
       >
-        Branch Directory
-      </Link>
+        <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
+          <path d="M15 6L9 12L15 18" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        </svg>
+        Go back
+      </a>
 
       <div className="fixed right-5 top-1/2 z-[100] -translate-y-1/2 rounded-xl border border-primary-neutral-900 bg-[rgba(16,16,15,0.9)] p-3 backdrop-blur-sm">
         <p className="mb-2 text-center font-jakarta text-xs text-primary-neutral-300">UI Scale</p>

@@ -88,9 +88,10 @@ function CloneAppShell() {
   }, [navigate]);
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#080807] px-6 py-12">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(192,132,252,0.3),_transparent_32%),linear-gradient(180deg,_#1b0b36_0%,_#120722_48%,_#090312_100%)] px-6 py-12">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,_rgba(216,180,254,0.12),_transparent_18%),radial-gradient(circle_at_80%_78%,_rgba(147,51,234,0.16),_transparent_24%)]" />
       <a
-        className="fixed left-5 top-5 z-[100] inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-4 py-2 font-jakarta text-xs font-semibold uppercase tracking-[0.2em] text-primary-neutral-50 backdrop-blur"
+        className="fixed left-5 top-5 z-[100] inline-flex items-center gap-2 rounded-full border border-white/10 bg-[rgba(49,24,89,0.58)] px-4 py-2 font-jakarta text-xs font-semibold uppercase tracking-[0.2em] text-primary-neutral-50 backdrop-blur"
         href={productionLandingUrl}
       >
         <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
@@ -99,7 +100,7 @@ function CloneAppShell() {
         Go back
       </a>
 
-      <div className="fixed right-5 top-1/2 z-[100] -translate-y-1/2 rounded-xl border border-primary-neutral-900 bg-[rgba(16,16,15,0.9)] p-3 backdrop-blur-sm">
+      <div className="fixed right-5 top-1/2 z-[100] -translate-y-1/2 rounded-xl border border-[rgba(218,196,255,0.14)] bg-[rgba(28,12,52,0.88)] p-3 backdrop-blur-sm">
         <p className="mb-2 text-center font-jakarta text-xs text-primary-neutral-300">UI Scale</p>
         <div className="flex h-32 items-center justify-center">
           <input

@@ -15,7 +15,7 @@ const ProfileDetailPage = () => {
       animate={{ x: 0, scale: 1 }}
       exit={{ x: 20, scale: 0.98 }}
       transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-      className="bg-gradient-to-b z-20 from-[#1e1e1d] from-[5.826%] to-[#131313] to-[94.067%] h-full w-full relative overflow-y-auto rounded-[48px]"
+      className="app-purple-shell z-20 h-full w-full relative overflow-y-auto rounded-[48px]"
     >
 
       {/* Back Button */}
@@ -78,7 +78,7 @@ const ProfileDetailPage = () => {
         </div>
 
         {/* Overview Section */}
-        <div className="bg-base-card border border-primary-neutral-900 box-border flex flex-col gap-3 items-center justify-center pb-[22px] pt-5 px-5 rounded-xl w-full">
+        <div className="app-purple-card box-border flex w-full flex-col items-center justify-center gap-3 rounded-xl border pb-[22px] pt-5 px-5">
           <p className="font-jakarta font-semibold leading-[1.2] text-base text-primary-neutral-50 w-full">
             Overview
           </p>
@@ -88,7 +88,7 @@ const ProfileDetailPage = () => {
         </div>
 
         {/* Social Purpose Section */}
-        <div className="bg-base-card border border-primary-neutral-900 rounded-xl w-full">
+        <div className="app-purple-card w-full rounded-xl border">
           <div className="box-border flex flex-col gap-6 items-start overflow-clip pb-[22px] pt-5 px-5 rounded-inherit w-full">
             {/* People I'm looking for */}
             <div className="flex flex-col gap-4 items-center justify-center w-full">
@@ -125,7 +125,7 @@ const ProfileDetailPage = () => {
         </div>
 
         {/* Experience Section */}
-        <div className="bg-base-card border border-primary-neutral-900 box-border flex flex-col gap-4 items-start justify-center pb-[22px] pt-5 px-5 rounded-xl w-full">
+        <div className="app-purple-card box-border flex w-full flex-col items-start justify-center gap-4 rounded-xl border pb-[22px] pt-5 px-5">
           <div className="flex items-center justify-between w-full">
             <p className="flex-[1_0_0] font-jakarta font-semibold leading-[1.2] text-base text-primary-neutral-50">
               Experience
@@ -181,7 +181,7 @@ const ProfileDetailPage = () => {
         </div>
 
         {/* Education Section */}
-        <div className="bg-base-card border border-primary-neutral-900 box-border flex flex-col gap-4 items-center justify-center pb-[22px] pt-5 px-5 rounded-xl w-full">
+        <div className="app-purple-card box-border flex w-full flex-col items-center justify-center gap-4 rounded-xl border pb-[22px] pt-5 px-5">
           <div className="flex items-center justify-between w-full">
             <p className="flex-[1_0_0] font-jakarta font-semibold leading-[1.2] text-base text-primary-neutral-50">
               Education
@@ -232,7 +232,7 @@ const ProfileDetailPage = () => {
         </div>
 
         {/* Background Section */}
-        <div className="bg-base-card border border-primary-neutral-900 box-border flex flex-col gap-5 items-center justify-center pb-[22px] pt-5 px-5 rounded-xl w-full">
+        <div className="app-purple-card box-border flex w-full flex-col items-center justify-center gap-5 rounded-xl border pb-[22px] pt-5 px-5">
           <p className="font-jakarta font-semibold leading-[1.2] text-base text-primary-neutral-50 w-full">
             Background
           </p>
@@ -288,7 +288,7 @@ const ProfileDetailPage = () => {
 
         {/* Recommendation Section */}
         {profile.recommendations && profile.recommendations.length > 0 && (
-          <div className="bg-base-card border border-primary-neutral-900 box-border flex flex-col gap-4 items-center justify-center pb-[22px] pt-5 px-5 rounded-xl w-full">
+          <div className="app-purple-card box-border flex w-full flex-col items-center justify-center gap-4 rounded-xl border pb-[22px] pt-5 px-5">
             <div className="flex items-center justify-between w-full">
               <p className="flex-[1_0_0] font-jakarta font-semibold leading-[1.2] text-base text-primary-neutral-50">
                 Recommendation

@@ -4,11 +4,14 @@ import * as assets from '../assets/figmaAssets';
 
 const MobileFrame = ({ activeTab, onTabChange, children }) => {
   return (
-    <div className="overflow-clip relative rounded-[48px] w-[393px] h-[852px] bg-[#10100F]" data-name="Mobile Frame">
+    <div
+      className="app-purple-shell overflow-clip relative h-[852px] w-[393px] rounded-[48px] border border-[rgba(236,223,255,0.14)] shadow-[0px_32px_90px_rgba(7,2,17,0.55)]"
+      data-name="Mobile Frame"
+    >
       {/* Tab Bar */}
       {activeTab !== 'ai' && (
         <TabBar
-          className="absolute bg-primary-neutral-950 bottom-0 box-border flex items-center justify-between left-0 pb-7 pt-2 px-11 shadow-[0px_-10px_40px_0px_rgba(0,0,0,0.1)] w-[393px] z-40"
+          className="absolute bottom-0 left-0 z-40 box-border flex w-[393px] items-center justify-between border-t border-[rgba(218,196,255,0.12)] bg-[rgba(18,8,36,0.86)] px-11 pb-7 pt-2 shadow-[0px_-10px_40px_0px_rgba(7,2,17,0.35)]"
           onTabClick={onTabChange}
         />
       )}
@@ -49,7 +52,7 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
 
       {/* Top Navigation */}
       <div className="absolute flex gap-5 items-center left-1/2 top-[66px] translate-x-[-50%] z-20">
-        <div className="bg-[rgba(30,30,29,0.4)] border border-primary-neutral-900 h-10 relative rounded-[24px] shrink-0 w-64">
+        <div className="app-purple-glass h-10 relative w-64 shrink-0 rounded-[24px] border">
           <div className="box-border flex gap-6 h-10 items-center overflow-clip px-3 py-0 relative rounded-[inherit] w-64">
             <div className="flex flex-[1_0_0] h-full items-center min-h-px min-w-px relative rounded-[72px] shrink-0">
               {/* People Tab */}
@@ -108,7 +111,7 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
         </div>
 
         {/* Settings Button */}
-        <button className="bg-[rgba(30,30,29,0.4)] border border-primary-neutral-900 box-border flex gap-[10px] items-center justify-center p-[6px] relative rounded-full shrink-0 size-11 cursor-pointer hover:bg-[rgba(30,30,29,0.6)] transition-colors">
+        <button className="app-purple-glass box-border relative flex size-11 shrink-0 items-center justify-center gap-[10px] rounded-full border p-[6px] transition-colors hover:bg-[rgba(73,35,126,0.68)] cursor-pointer">
           <div className="overflow-clip relative rounded-[5px] shrink-0 size-[22px]">
             <div className="absolute inset-[13.54%_5.21%]">
               <img alt="" className="block max-w-none size-full" src={assets.img15} />

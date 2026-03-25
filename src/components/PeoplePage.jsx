@@ -57,9 +57,9 @@ const PeoplePage = () => {
       {/* Card 3 (Background) */}
       <div className="absolute flex h-[318px] items-center justify-center left-[calc(50%+0.31px)] top-[148px] translate-x-[-50%] w-[270px]">
         <div className="flex-none rotate-[3deg]">
-          <div className="bg-base-card border border-[rgba(94,94,92,0.6)] h-[305px] relative rounded-[36px] w-[254px]">
+          <div className="app-purple-card h-[305px] relative w-[254px] rounded-[36px] border">
             <div className="box-border flex flex-col gap-4 h-[305px] items-center overflow-clip p-5 relative rounded-[inherit] w-[254px]">
-              <div className="absolute bg-[rgba(19,19,19,0.65)] h-[459px] left-[-19px] shadow-[0px_0px_20px_0px_#1e1e1d] top-[-18px] w-[391px]" />
+              <div className="absolute h-[459px] left-[-19px] top-[-18px] w-[391px] bg-[rgba(18,8,36,0.56)] shadow-[0px_0px_20px_0px_rgba(60,25,112,0.35)]" />
             </div>
           </div>
         </div>
@@ -68,14 +68,14 @@ const PeoplePage = () => {
       {/* Card 2 (Middle) */}
       <div className="absolute flex h-[380px] items-center justify-center left-[43px] top-[175px] w-[325px]">
         <div className="flex-none rotate-[356deg]">
-          <div className="bg-base-card border border-[rgba(94,94,92,0.8)] h-[360px] relative rounded-[36px] w-[300px]">
+          <div className="app-purple-card h-[360px] relative w-[300px] rounded-[36px] border">
             <div className="box-border flex flex-col gap-4 h-[360px] items-center overflow-clip p-5 relative rounded-[inherit] w-[300px]">
               <div className="absolute blur-[50px] filter flex gap-[10px] items-center left-[calc(50%+-0.211px)] opacity-[0.12] size-[360px] top-[1.97px] translate-x-[-50%]">
                 <div className="flex-[1_0_0] h-full min-h-px min-w-px relative shrink-0">
                   <img alt="" className="absolute h-[132.45%] left-[-0.18%] max-w-none top-[-16.23%] w-[100.04%]" src={assets.imgImage70} />
                 </div>
               </div>
-              <div className="absolute bg-[rgba(20,20,20,0.4)] h-[459px] left-[-19px] shadow-[0px_0px_20px_0px_#1e1e1d] top-[-18px] w-[391px]" />
+              <div className="absolute h-[459px] left-[-19px] top-[-18px] w-[391px] bg-[rgba(24,11,44,0.38)] shadow-[0px_0px_20px_0px_rgba(60,25,112,0.35)]" />
               <div className="box-border flex gap-[10px] items-center overflow-clip relative rounded-full shadow-[0px_7px_29px_0px_rgba(255,255,255,0.2)] shrink-0">
                 <div className="relative shrink-0 size-[136px]">
                   <img alt="" className="absolute h-[132.45%] left-[-0.18%] max-w-none top-[-16.23%] w-[100.04%] rounded-full object-cover" src={assets.imgImage70} />
@@ -89,7 +89,7 @@ const PeoplePage = () => {
       {/* Card 1 (Main Profile Card) */}
       <div
         onClick={handleProfileClick}
-        className="absolute bg-base-card border border-primary-neutral-700 cursor-pointer h-[424px] left-1/2 rounded-[36px] top-[205px] translate-x-[-50%] w-[353px] hover:border-primary-neutral-300 transition-colors"
+        className="app-purple-card absolute left-1/2 top-[205px] h-[424px] w-[353px] translate-x-[-50%] cursor-pointer rounded-[36px] border border-[rgba(218,196,255,0.16)] transition-colors hover:border-[rgba(236,223,255,0.38)]"
       >
         <div className="box-border flex flex-col gap-4 h-[424px] items-center overflow-clip p-5 relative rounded-[inherit] w-[353px]">
           <div className="absolute blur-[50px] filter flex gap-[10px] items-center left-[-36px] opacity-[0.12] size-[424px] top-0">

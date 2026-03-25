@@ -15,7 +15,7 @@ const RequestDetailPage = () => {
       animate={{ x: 0, scale: 1 }}
       exit={{ x: 20, scale: 0.98 }}
       transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-      className="bg-gradient-to-b z-20 from-[#1e1e1d] from-[5.826%] to-[#131313] to-[94.067%] h-full w-full relative overflow-y-auto rounded-[48px]"
+      className="app-purple-shell z-20 h-full w-full relative overflow-y-auto rounded-[48px]"
     >
       {/* Bottom Shade */}
       <div className="absolute bottom-0 h-[123px] left-0 w-[393px] pointer-events-none" />
@@ -95,7 +95,7 @@ const RequestDetailPage = () => {
           <div className="flex flex-col gap-2 items-start w-full mb-9">
             <div className="flex flex-wrap gap-2 items-start">
               {request.tags.map((tag, index) => (
-                <div key={index} className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] rounded-full">
+                <div key={index} className="bg-[rgba(114,78,182,0.22)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] rounded-full">
                   <p className="font-jakarta font-normal leading-[1.5] text-xs text-primary-neutral-50">
                     {tag.label}
                   </p>
@@ -107,7 +107,7 @@ const RequestDetailPage = () => {
           {/* Requester Card */}
           <div
             onClick={() => navigate(`/profile/${request.requester.id}`)}
-            className="bg-[#1e1e1d] border border-primary-neutral-900 box-border flex gap-4 items-center justify-center p-3 rounded-[20px] w-full cursor-pointer hover:border-primary-neutral-700 transition-colors"
+            className="app-purple-card box-border flex w-full cursor-pointer items-center justify-center gap-4 rounded-[20px] border p-3 transition-colors hover:border-[rgba(236,223,255,0.3)]"
           >
             {/* Photo */}
             <div className="flex gap-[10px] items-center overflow-clip rounded-full shrink-0 w-20">

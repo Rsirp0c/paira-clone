@@ -30,10 +30,10 @@ const AIChatPage = () => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.2 }}
-      className="absolute inset-0 bg-[#131313] z-30"
+      className="app-purple-shell absolute inset-0 z-30"
     >
       {/* Header */}
-      <div className="absolute bg-[#131313] box-border flex h-[48px] items-center justify-center left-0 px-5 top-[54px] w-[393px] z-10">
+      <div className="absolute left-0 top-[54px] z-10 box-border flex h-[48px] w-[393px] items-center justify-center border-b border-[rgba(218,196,255,0.08)] bg-[rgba(20,9,38,0.72)] px-5 backdrop-blur">
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
@@ -105,7 +105,7 @@ const AIChatPage = () => {
                     {/* Profile Card */}
                     <div
                       onClick={() => navigate('/profile/dylan')}
-                      className="bg-[#1e1e1d] border border-[#3d3d3b] box-border flex gap-4 items-center justify-center px-5 py-3 rounded-[20px] w-full cursor-pointer hover:border-[#5e5e5c] transition-colors"
+                      className="app-purple-card box-border flex w-full cursor-pointer items-center justify-center gap-4 rounded-[20px] border px-5 py-3 transition-colors hover:border-[rgba(236,223,255,0.3)]"
                     >
                       {/* Photo */}
                       <div className="flex gap-[10px] items-center overflow-clip rounded-full w-20 h-20 shrink-0">
@@ -159,7 +159,7 @@ const AIChatPage = () => {
                     {/* Request Card */}
                     <div
                       onClick={() => navigate('/request/nora')}
-                      className="bg-[#1e1e1d] border border-[#3d3d3b] box-border flex gap-4 items-center justify-center px-5 py-3 rounded-[20px] w-full cursor-pointer hover:border-[#5e5e5c] transition-colors"
+                      className="app-purple-card box-border flex w-full cursor-pointer items-center justify-center gap-4 rounded-[20px] border px-5 py-3 transition-colors hover:border-[rgba(236,223,255,0.3)]"
                     >
                       <div className="flex flex-col gap-4 items-start flex-1">
                         {/* Basic Info */}
@@ -173,7 +173,7 @@ const AIChatPage = () => {
                         </div>
 
                         {/* Requester */}
-                        <div className="bg-[rgba(50,49,53,0.8)] box-border flex flex-col gap-4 items-center justify-center px-3 py-2 rounded-[36px] w-full">
+                        <div className="bg-[rgba(92,61,148,0.36)] box-border flex w-full flex-col items-center justify-center gap-4 rounded-[36px] px-3 py-2">
                           <div className="flex gap-3 items-center w-full">
                             {/* Photo */}
                             <div className="flex gap-[10px] items-center overflow-clip rounded-full size-9">
@@ -229,7 +229,7 @@ const AIChatPage = () => {
             {/* Buttons */}
             <div className="px-5 pb-4 w-full">
               <div className="flex gap-[10px] items-start">
-                <button className="bg-[#1e1e1d] box-border flex gap-2 items-center px-2 py-1 rounded-lg hover:bg-[#2e2e2d] transition-colors cursor-pointer">
+                <button className="bg-[rgba(50,22,92,0.78)] box-border flex gap-2 items-center px-2 py-1 rounded-lg hover:bg-[rgba(73,35,126,0.78)] transition-colors cursor-pointer">
                   <div className="overflow-clip relative rounded-[3px] size-4">
                     <div className="absolute inset-[5.21%_9.37%_5.21%_9.38%]">
                       <img alt="Like" className="block max-w-none size-full" src={imgLike} />
@@ -237,7 +237,7 @@ const AIChatPage = () => {
                   </div>
                 </button>
 
-                <button className="bg-[#1e1e1d] box-border flex gap-2 items-center px-2 py-1 rounded-lg hover:bg-[#2e2e2d] transition-colors cursor-pointer">
+                <button className="bg-[rgba(50,22,92,0.78)] box-border flex gap-2 items-center px-2 py-1 rounded-lg hover:bg-[rgba(73,35,126,0.78)] transition-colors cursor-pointer">
                   <div className="overflow-clip relative rounded-[3px] size-4">
                     <div className="absolute inset-[5.21%_9.37%_5.21%_9.38%] rotate-180">
                       <img alt="Dislike" className="block max-w-none size-full" src={imgLike} />
@@ -245,7 +245,7 @@ const AIChatPage = () => {
                   </div>
                 </button>
 
-                <button className="bg-[#1e1e1d] box-border flex gap-2 items-center px-2 py-1 rounded-lg hover:bg-[#2e2e2d] transition-colors cursor-pointer">
+                <button className="bg-[rgba(50,22,92,0.78)] box-border flex gap-2 items-center px-2 py-1 rounded-lg hover:bg-[rgba(73,35,126,0.78)] transition-colors cursor-pointer">
                   <div className="overflow-clip relative size-4">
                     <img alt="Menu" className="block size-full" src={imgMenuDots} />
                   </div>
@@ -257,10 +257,10 @@ const AIChatPage = () => {
       </div>
 
       {/* Composer */}
-      <div className="absolute bg-[#131313] h-8 left-0 bottom-6 w-[393px] shadow-[0px_-1px_0px_0px_rgba(0,0,0,0.08)] flex items-center justify-center z-10">
+      <div className="absolute bottom-6 left-0 z-10 flex h-8 w-[393px] items-center justify-center bg-[rgba(20,9,38,0.8)] shadow-[0px_-1px_0px_0px_rgba(218,196,255,0.08)]">
         <form onSubmit={handleSubmit} className="flex gap-2 items-center w-[353px]">
           {/* Input */}
-          <div className="flex-1 h-10 relative bg-[#131313] border border-[#5e5e5c] rounded-[20px] overflow-hidden">
+          <div className="relative h-10 flex-1 overflow-hidden rounded-[20px] border border-[rgba(218,196,255,0.18)] bg-[rgba(29,16,56,0.94)]">
             <input
               type="text"
               value={message}

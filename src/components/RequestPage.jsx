@@ -51,11 +51,11 @@ const RequestPage = () => {
       {/* Card 3 (Background) */}
       <div className="absolute flex h-[318px] items-center justify-center left-[calc(50%+0.31px)] top-[148px] translate-x-[-50%] w-[270px]">
         <div className="flex-none rotate-[3deg]">
-          <div className="bg-[#222124] border border-[rgba(94,94,92,0.6)] h-[305px] relative rounded-[36px] w-[254px]">
+          <div className="app-purple-card h-[305px] relative w-[254px] rounded-[36px] border">
             <div className="box-border flex flex-col gap-3 h-[305px] items-center overflow-clip pb-5 pt-6 px-6 relative rounded-[inherit] w-[254px]">
               <div className="absolute flex h-[380px] items-center justify-center left-[-20.5px] top-[-23px] w-[325px]">
                 <div className="flex-none rotate-[356deg]">
-                  <div className="bg-[rgba(20,20,20,0.65)] h-[459px] shadow-[0px_0px_20px_0px_#1e1e1d] w-[391px]" />
+                  <div className="h-[459px] w-[391px] bg-[rgba(18,8,36,0.56)] shadow-[0px_0px_20px_0px_rgba(60,25,112,0.35)]" />
                 </div>
               </div>
               <div className="absolute blur-[50px] filter flex gap-[10px] items-center left-[-36px] opacity-[0.12] size-[424px] top-0">
@@ -71,11 +71,11 @@ const RequestPage = () => {
       {/* Card 2 (Middle) */}
       <div className="absolute flex h-[380px] items-center justify-center left-[43px] top-[175px] w-[325px]">
         <div className="flex-none rotate-[356deg]">
-          <div className="bg-[#222124] border border-[rgba(94,94,92,0.8)] h-[360px] relative rounded-[36px] w-[300px]">
+          <div className="app-purple-card h-[360px] relative w-[300px] rounded-[36px] border">
             <div className="box-border flex flex-col gap-3 h-[360px] items-center overflow-clip pb-5 pt-6 px-6 relative rounded-[inherit] w-[300px]">
               <div className="absolute flex h-[380px] items-center justify-center left-[-20.5px] top-[-23px] w-[325px]">
                 <div className="flex-none rotate-[356deg]">
-                  <div className="bg-[rgba(20,20,20,0.4)] h-[459px] shadow-[0px_0px_20px_0px_#1e1e1d] w-[391px]" />
+                  <div className="h-[459px] w-[391px] bg-[rgba(24,11,44,0.38)] shadow-[0px_0px_20px_0px_rgba(60,25,112,0.35)]" />
                 </div>
               </div>
               <div className="absolute blur-[50px] filter flex gap-[10px] items-center left-[-36px] opacity-[0.12] size-[424px] top-0">
@@ -91,7 +91,7 @@ const RequestPage = () => {
       {/* Card 1 (Main Request Card) */}
       <div
         onClick={() => navigate('/request/chloe')}
-        className="absolute bg-[#222124] border border-primary-neutral-700 cursor-pointer h-[424px] left-1/2 rounded-[36px] top-[205px] translate-x-[-50%] w-[353px] hover:border-primary-neutral-300 transition-colors"
+        className="app-purple-card absolute left-1/2 top-[205px] h-[424px] w-[353px] translate-x-[-50%] cursor-pointer rounded-[36px] border border-[rgba(218,196,255,0.16)] transition-colors hover:border-[rgba(236,223,255,0.38)]"
       >
         <div className="box-border flex flex-col gap-3 h-[424px] items-center overflow-clip pb-5 pt-6 px-6 relative rounded-[inherit] w-[353px]">
           {/* Requester Profile Section */}
@@ -137,7 +137,7 @@ const RequestPage = () => {
               {/* Tags */}
               <div className="flex flex-wrap gap-2 items-start relative shrink-0 w-full">
                 {/* Technology Tag */}
-                <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
+                <div className="bg-[rgba(114,78,182,0.22)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
                   <div className="overflow-clip relative shrink-0 size-5">
                     <div className="absolute inset-[5.21%]">
                       <img alt="" className="block max-w-none size-full" src={assets.img11Request} />
@@ -149,7 +149,7 @@ const RequestPage = () => {
                 </div>
 
                 {/* Mentor Tag */}
-                <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
+                <div className="bg-[rgba(114,78,182,0.22)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
                   <div className="overflow-clip relative shrink-0 size-5">
                     <div className="absolute inset-[5.208%]">
                       <img alt="" className="block max-w-none size-full" src={assets.img12Request} />
@@ -161,7 +161,7 @@ const RequestPage = () => {
                 </div>
 
                 {/* Online Tag */}
-                <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
+                <div className="bg-[rgba(114,78,182,0.22)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
                   <div className="overflow-clip relative shrink-0 size-5">
                     <div className="absolute inset-[5.208%]">
                       <img alt="" className="block max-w-none size-full" src={assets.img13} />
@@ -173,7 +173,7 @@ const RequestPage = () => {
                 </div>
 
                 {/* $50 Tag */}
-                <div className="bg-[rgba(42,41,62,0.3)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
+                <div className="bg-[rgba(114,78,182,0.22)] border border-primary-neutral-50 box-border flex gap-2 h-[30px] items-center justify-center px-3 py-[6px] relative rounded-full shrink-0">
                   <div className="overflow-clip relative shrink-0 size-5">
                     <div className="absolute inset-[5.208%]">
                       <img alt="" className="block max-w-none size-full" src={assets.img14} />

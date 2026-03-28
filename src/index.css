@@ -34,3 +34,12 @@ body {
 .search-idle-caret {
   animation: searchIdleBlink 1.1s steps(1) infinite;
 }
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

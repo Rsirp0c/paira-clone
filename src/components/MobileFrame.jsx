@@ -3,11 +3,14 @@ import TabBar from './TabBar';
 import * as assets from '../assets/figmaAssets';
 
 const MobileFrame = ({ activeTab, onTabChange, children }) => {
+  const showTopNavigation = activeTab !== 'ai' && activeTab !== 'profile';
+
   return (
     <div className="overflow-clip relative rounded-[48px] w-[393px] h-[852px] bg-[#10100F]" data-name="Mobile Frame">
       {/* Tab Bar */}
       {activeTab !== 'ai' && (
         <TabBar
+          activeTab={activeTab}
           className="absolute bg-primary-neutral-950 bottom-0 box-border flex items-center justify-between left-0 pb-7 pt-2 px-11 shadow-[0px_-10px_40px_0px_rgba(0,0,0,0.1)] w-[393px] z-40"
           onTabClick={onTabChange}
         />
@@ -48,7 +51,8 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
       </div>
 
       {/* Top Navigation */}
-      <div className="absolute flex gap-5 items-center left-1/2 top-[66px] translate-x-[-50%] z-20">
+      {showTopNavigation && (
+        <div className="absolute flex gap-5 items-center left-1/2 top-[66px] translate-x-[-50%] z-20">
         <div className="bg-[rgba(30,30,29,0.4)] border border-primary-neutral-900 h-10 relative rounded-[24px] shrink-0 w-64">
           <div className="box-border flex gap-6 h-10 items-center overflow-clip px-3 py-0 relative rounded-[inherit] w-64">
             <div className="flex flex-[1_0_0] h-full items-center min-h-px min-w-px relative rounded-[72px] shrink-0">
@@ -115,7 +119,8 @@ const MobileFrame = ({ activeTab, onTabChange, children }) => {
             </div>
           </div>
         </button>
-      </div>
+        </div>
+      )}
 
       {/* Page Content */}
       {children}

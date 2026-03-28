@@ -20,7 +20,11 @@
       "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_dPu8wm/**)",
       "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_KYfMm4/**)",
       "Read(//var/folders/6d/9sqlzcfx5vn_c85d885vwpt00000gn/T/TemporaryItems/NSIRD_screencaptureui_r5rLeo/**)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "mcp__plugin_figma_figma__get_design_context",
+      "mcp__plugin_figma_figma__get_screenshot",
+      "Bash(mv profileAvatarCircle.png profileAvatarCircle.svg)",
+      "Bash(mv profileAvatarGroup.png profileAvatarGroup.svg)"
     ],
     "deny": [],
     "ask": []

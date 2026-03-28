@@ -11,15 +11,58 @@ import {
 } from 'react-router-dom';
 import AIChatPage from './components/AIChatPage';
 import BranchDirectoryPage from './components/BranchDirectoryPage';
+import FigmaView from './components/FigmaView';
 import MobileFrame from './components/MobileFrame';
+import OutlinePanel from './components/OutlinePanel';
 import PeoplePage from './components/PeoplePage';
 import ProfileDetailPage from './components/ProfileDetailPage';
+import ProfileRequestPage from './components/ProfileRequestPage';
 import RequestDetailPage from './components/RequestDetailPage';
 import RequestPage from './components/RequestPage';
 import './index.css';
 
+const productionLandingUrl = 'https://paira-clone.vercel.app/';
+
+function ViewToggle({ figmaView, setFigmaView }) {
+  return (
+    <div className="fixed left-0 right-0 top-0 z-[200] flex items-center justify-between px-5 py-4 pointer-events-none">
+      <a
+        className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-4 py-2 font-jakarta text-xs font-semibold uppercase tracking-[0.2em] text-primary-neutral-50 backdrop-blur"
+        href={productionLandingUrl}
+      >
+        <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
+          <path d="M15 6L9 12L15 18" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        </svg>
+        Go back
+      </a>
+
+      <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/10 bg-black/50 p-1 backdrop-blur">
+        <button
+          onClick={() => setFigmaView(false)}
+          className={[
+            'rounded-full px-4 py-1.5 font-jakarta text-xs font-semibold transition-colors duration-150',
+            !figmaView ? 'bg-white/15 text-white' : 'text-white/50 hover:text-white/80',
+          ].join(' ')}
+        >
+          App View
+        </button>
+        <button
+          onClick={() => setFigmaView(true)}
+          className={[
+            'rounded-full px-4 py-1.5 font-jakarta text-xs font-semibold transition-colors duration-150',
+            figmaView ? 'bg-white/15 text-white' : 'text-white/50 hover:text-white/80',
+          ].join(' ')}
+        >
+          Figma View
+        </button>
+      </div>
+
+      <div className="w-32" />
+    </div>
+  );
+}
+
 function CloneAppShell() {
-  const productionLandingUrl = 'https://paira-clone.vercel.app/';
   const location = useLocation();
   const navigate = useNavigate();
   const [uiScale, setUiScale] = useState(1);
@@ -31,73 +74,41 @@ function CloneAppShell() {
   const isProfilePage = location.pathname.startsWith('/app/profile');
   const isRequestDetailPage = location.pathname.startsWith('/app/request/');
   const isAIPage = location.pathname === '/app/ai';
+  const isMyProfilePage = location.pathname === '/app/my-profile';
   const activeTab = isAIPage
     ? 'ai'
-    : isProfilePage
-      ? 'people'
-      : isRequestDetailPage
-        ? 'request'
-        : location.pathname === '/app/requests'
+    : isMyProfilePage
+      ? 'profile'
+      : isProfilePage
+        ? 'people'
+        : isRequestDetailPage
           ? 'request'
-          : 'people';
+          : location.pathname === '/app/requests'
+            ? 'request'
+            : 'people';
 
   const handleTabChange = (tab) => {
-    if (tab === 'people') {
-      navigate('/app');
-      return;
-    }
-
-    if (tab === 'request') {
-      navigate('/app/requests');
-      return;
-    }
-
-    if (tab === 'ai') {
-      navigate('/app/ai');
-    }
+    if (tab === 'people') { navigate('/app'); return; }
+    if (tab === 'request') { navigate('/app/requests'); return; }
+    if (tab === 'ai') { navigate('/app/ai'); return; }
+    if (tab === 'profile') { navigate('/app/my-profile'); }
   };
 
   useEffect(() => {
     const handleMessage = (event) => {
-      if (event.data?.type !== 'NAVIGATE_TO_STEP') {
-        return;
-      }
-
+      if (event.data?.type !== 'NAVIGATE_TO_STEP') return;
       const { stepId } = event.data;
-
-      if (stepId === 'people') {
-        navigate('/app');
-        return;
-      }
-
-      if (stepId === 'request') {
-        navigate('/app/requests');
-        return;
-      }
-
-      if (stepId === 'ai') {
-        navigate('/app/ai');
-      }
+      if (stepId === 'people') { navigate('/app'); return; }
+      if (stepId === 'request') { navigate('/app/requests'); return; }
+      if (stepId === 'ai') { navigate('/app/ai'); }
     };
-
     window.addEventListener('message', handleMessage);
-
-    return () => {
-      window.removeEventListener('message', handleMessage);
-    };
+    return () => window.removeEventListener('message', handleMessage);
   }, [navigate]);
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#080807] px-6 py-12">
-      <a
-        className="fixed left-5 top-5 z-[100] inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-4 py-2 font-jakarta text-xs font-semibold uppercase tracking-[0.2em] text-primary-neutral-50 backdrop-blur"
-        href={productionLandingUrl}
-      >
-        <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
-          <path d="M15 6L9 12L15 18" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </svg>
-        Go back
-      </a>
+      <OutlinePanel />
 
       <div className="fixed right-5 top-1/2 z-[100] -translate-y-1/2 rounded-xl border border-primary-neutral-900 bg-[rgba(16,16,15,0.9)] p-3 backdrop-blur-sm">
         <p className="mb-2 text-center font-jakarta text-xs text-primary-neutral-300">UI Scale</p>
@@ -128,6 +139,7 @@ function CloneAppShell() {
               <Route element={<ProfileDetailPage />} path="profile/:id" />
               <Route element={<RequestDetailPage />} path="request/:id" />
               <Route element={<AIChatPage />} path="ai" />
+              <Route element={<ProfileRequestPage />} path="my-profile" />
             </Routes>
           </AnimatePresence>
         </MobileFrame>
@@ -143,18 +155,30 @@ function LegacyAppRedirect({ prefix }) {
 }
 
 function App() {
+  const [figmaView, setFigmaView] = useState(false);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<BranchDirectoryPage />} path="/" />
-        <Route element={<CloneAppShell />} path="/app/*" />
-        <Route element={<LegacyAppRedirect prefix="requests" />} path="/requests" />
-        <Route element={<LegacyAppRedirect prefix="ai" />} path="/ai" />
-        <Route element={<LegacyAppRedirect prefix="profile" />} path="/profile/:id" />
-        <Route element={<LegacyAppRedirect prefix="request" />} path="/request/:id" />
-        <Route element={<Navigate replace to="/" />} path="*" />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <ViewToggle figmaView={figmaView} setFigmaView={setFigmaView} />
+
+      {figmaView ? (
+        <div className="pt-16 min-h-screen bg-[#080807]">
+          <FigmaView />
+        </div>
+      ) : (
+        <BrowserRouter>
+          <Routes>
+            <Route element={<BranchDirectoryPage />} path="/" />
+            <Route element={<CloneAppShell />} path="/app/*" />
+            <Route element={<LegacyAppRedirect prefix="requests" />} path="/requests" />
+            <Route element={<LegacyAppRedirect prefix="ai" />} path="/ai" />
+            <Route element={<LegacyAppRedirect prefix="profile" />} path="/profile/:id" />
+            <Route element={<LegacyAppRedirect prefix="request" />} path="/request/:id" />
+            <Route element={<Navigate replace to="/" />} path="*" />
+          </Routes>
+        </BrowserRouter>
+      )}
+    </>
   );
 }
 

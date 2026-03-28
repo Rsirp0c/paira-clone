@@ -31,6 +31,29 @@ import imgBatteryCap from './images/imgBatteryCap.svg';
 import imgWifi from './images/imgWifi.svg';
 import imgCellular from './images/imgCellular.svg';
 
+// Profile-Request page assets
+import profileSofia from './images/profileSofia.png';
+import profileAvatar1 from './images/profileAvatar1.png';
+import profileAvatar2 from './images/profileAvatar2.png';
+import profileAvatar3 from './images/profileAvatar3.png';
+import profileAvatar4 from './images/profileAvatar4.png';
+import profileAvatar5 from './images/profileAvatar5.png';
+import profileAvatar6 from './images/profileAvatar6.png';
+import profileAvatarGroup from './images/profileAvatarGroup.svg';
+import profileAvatarCircle from './images/profileAvatarCircle.svg';
+import profileIconNotes from './images/profileIconNotes.svg';
+import profileIconChat from './images/profileIconChat.svg';
+import profileIconUser from './images/profileIconUser.svg';
+import profileIconSettings from './images/profileIconSettings.svg';
+import profileIconStars1 from './images/profileIconStars1.svg';
+import profileIconStars2 from './images/profileIconStars2.svg';
+import profileIconEdit from './images/profileIconEdit.svg';
+import profileIconArrowRight from './images/profileIconArrowRight.svg';
+import profileIconChevronRight from './images/profileIconChevronRight.svg';
+import profileIconMenuDots from './images/profileIconMenuDots.svg';
+import profileIconPlusH from './images/profileIconPlusH.svg';
+import profileIconPlusV from './images/profileIconPlusV.svg';
+
 // Reuse the same photo assets across pages to keep references consistent.
 const imgImage67Request = imgImage67;
 const imgImage70Request = imgImage70;
@@ -68,4 +91,25 @@ export {
   imgBatteryCap,
   imgWifi,
   imgCellular,
+  profileSofia,
+  profileAvatar1,
+  profileAvatar2,
+  profileAvatar3,
+  profileAvatar4,
+  profileAvatar5,
+  profileAvatar6,
+  profileAvatarGroup,
+  profileAvatarCircle,
+  profileIconNotes,
+  profileIconChat,
+  profileIconUser,
+  profileIconSettings,
+  profileIconStars1,
+  profileIconStars2,
+  profileIconEdit,
+  profileIconArrowRight,
+  profileIconChevronRight,
+  profileIconMenuDots,
+  profileIconPlusH,
+  profileIconPlusV,
 };

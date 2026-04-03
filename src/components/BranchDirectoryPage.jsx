@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import pairaLogo from '../assets/icons/Paira-logo.svg';
 
 const emphasisClassName = 'font-semibold text-primary-neutral-50';
@@ -57,6 +58,7 @@ function BranchCard({ branch }) {
 }
 
 function BranchDirectoryPage() {
+  const navigate = useNavigate();
   const cloneCommand = 'git clone https://github.com/Rsirp0c/paira-clone.git';
   const [copyFeedback, setCopyFeedback] = useState('');
   const [isGettingStartedOpen, setIsGettingStartedOpen] = useState(false);
@@ -140,13 +142,24 @@ function BranchDirectoryPage() {
 
         <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-10 sm:px-8 lg:px-10">
           <div className="mx-auto mb-14 w-full max-w-4xl space-y-6 xl:max-w-5xl">
-            <div className="max-w-3xl">
+            <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-4">
                 <img alt="Paira logo" className="h-11 w-11 shrink-0 sm:h-14 sm:w-14" src={pairaLogo} />
                 <h1 className="max-w-2xl font-dm-serif text-5xl leading-[0.95] text-primary-neutral-50 sm:text-6xl">
                   mini Paira
                 </h1>
               </div>
+              <button
+                className="shrink-0 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 font-jakarta text-sm font-semibold text-cyan-100 transition-colors hover:bg-cyan-400/20"
+                onClick={() => navigate('/ai-flow')}
+                type="button"
+              >
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24">
+                  <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z" stroke="currentColor" strokeWidth="2" />
+                  <path d="M9 12H15M15 12L12.5 9.5M15 12L12.5 14.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+                </svg>
+                AI Flow
+              </button>
             </div>
             <div className="w-full rounded-[24px] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
               <button

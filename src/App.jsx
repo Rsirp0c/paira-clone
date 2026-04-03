@@ -19,6 +19,7 @@ import ProfileDetailPage from './components/ProfileDetailPage';
 import ProfileRequestPage from './components/ProfileRequestPage';
 import RequestDetailPage from './components/RequestDetailPage';
 import RequestPage from './components/RequestPage';
+import LlmSessionsPage from './components/LlmSessionsPage';
 import './index.css';
 
 const productionLandingUrl = 'https://paira-clone.vercel.app/';
@@ -26,15 +27,7 @@ const productionLandingUrl = 'https://paira-clone.vercel.app/';
 function ViewToggle({ figmaView, setFigmaView }) {
   return (
     <div className="fixed left-0 right-0 top-0 z-[200] flex items-center justify-between px-5 py-4 pointer-events-none">
-      <a
-        className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-4 py-2 font-jakarta text-xs font-semibold uppercase tracking-[0.2em] text-primary-neutral-50 backdrop-blur"
-        href={productionLandingUrl}
-      >
-        <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
-          <path d="M15 6L9 12L15 18" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </svg>
-        Go back
-      </a>
+      <div className="w-32" />
 
       <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/10 bg-black/50 p-1 backdrop-blur">
         <button
@@ -154,31 +147,46 @@ function LegacyAppRedirect({ prefix }) {
   return <Navigate replace to={target} />;
 }
 
+function AppRouter({ figmaView, setFigmaView }) {
+  const location = useLocation();
+  const isObservabilityPage = location.pathname === '/ai-flow';
+  const showViewToggle = !isObservabilityPage;
+
+  if (figmaView && !isObservabilityPage) {
+    return (
+      <>
+        <ViewToggle figmaView={figmaView} setFigmaView={setFigmaView} />
+        <div className="pt-16 min-h-screen bg-[#080807]">
+          <FigmaView />
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <>
+      {showViewToggle ? <ViewToggle figmaView={figmaView} setFigmaView={setFigmaView} /> : null}
+      <Routes>
+        <Route element={<BranchDirectoryPage />} path="/" />
+        <Route element={<LlmSessionsPage />} path="/ai-flow" />
+        <Route element={<CloneAppShell />} path="/app/*" />
+        <Route element={<LegacyAppRedirect prefix="requests" />} path="/requests" />
+        <Route element={<LegacyAppRedirect prefix="ai" />} path="/ai" />
+        <Route element={<LegacyAppRedirect prefix="profile" />} path="/profile/:id" />
+        <Route element={<LegacyAppRedirect prefix="request" />} path="/request/:id" />
+        <Route element={<Navigate replace to="/" />} path="*" />
+      </Routes>
+    </>
+  );
+}
+
 function App() {
   const [figmaView, setFigmaView] = useState(false);
 
   return (
-    <>
-      <ViewToggle figmaView={figmaView} setFigmaView={setFigmaView} />
-
-      {figmaView ? (
-        <div className="pt-16 min-h-screen bg-[#080807]">
-          <FigmaView />
-        </div>
-      ) : (
-        <BrowserRouter>
-          <Routes>
-            <Route element={<BranchDirectoryPage />} path="/" />
-            <Route element={<CloneAppShell />} path="/app/*" />
-            <Route element={<LegacyAppRedirect prefix="requests" />} path="/requests" />
-            <Route element={<LegacyAppRedirect prefix="ai" />} path="/ai" />
-            <Route element={<LegacyAppRedirect prefix="profile" />} path="/profile/:id" />
-            <Route element={<LegacyAppRedirect prefix="request" />} path="/request/:id" />
-            <Route element={<Navigate replace to="/" />} path="*" />
-          </Routes>
-        </BrowserRouter>
-      )}
-    </>
+    <BrowserRouter>
+      <AppRouter figmaView={figmaView} setFigmaView={setFigmaView} />
+    </BrowserRouter>
   );
 }
 

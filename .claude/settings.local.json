@@ -24,9 +24,16 @@
       "mcp__plugin_figma_figma__get_design_context",
       "mcp__plugin_figma_figma__get_screenshot",
       "Bash(mv profileAvatarCircle.png profileAvatarCircle.svg)",
-      "Bash(mv profileAvatarGroup.png profileAvatarGroup.svg)"
+      "Bash(mv profileAvatarGroup.png profileAvatarGroup.svg)",
+      "Skill(agent-browser)",
+      "Bash(agent-browser open:*)",
+      "Bash(agent-browser wait:*)",
+      "Bash(agent-browser screenshot:*)"
     ],
     "deny": [],
     "ask": []
+  },
+  "enabledPlugins": {
+    "chrome-devtools-mcp@claude-plugins-official": false
   }
 }

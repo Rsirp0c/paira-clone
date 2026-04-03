@@ -74,9 +74,6 @@ function RequestCard({ title, category, date, avatars, hasGroupAvatar }) {
                   <div className="flex items-start mr-[-8px] w-6 overflow-clip">
                     <div className="relative size-6 overflow-clip rounded-full">
                       <img alt="" className="absolute block max-w-none size-full" src={avatars[0]} />
-                      <div className="absolute inset-[41.67%_12.5%]">
-                        <img alt="" className="absolute block max-w-none size-full" src={assets.profileIconMenuDots} />
-                      </div>
                     </div>
                   </div>
                   {avatars.slice(1).map((av, i) => (
@@ -92,8 +89,8 @@ function RequestCard({ title, category, date, avatars, hasGroupAvatar }) {
               )}
             </div>
           )}
-          <div className="overflow-clip size-6 flex items-center justify-center">
-            <img alt="" className="block max-w-none size-full" src={assets.profileIconChevronRight} />
+          <div className="flex h-[15.5px] w-[7.5px] items-center justify-center">
+            <img alt="" className="block h-[15.5px] w-[7.5px]" src={assets.profileIconChevronRight} />
           </div>
         </div>
       </div>
@@ -113,27 +110,12 @@ const ProfileRequestPage = () => {
       className="absolute inset-0 bg-[#131313] z-30 overflow-hidden"
     >
       {/* Header */}
-      <div className="absolute top-[54px] left-0 w-full flex items-center justify-between px-[22px] py-2 h-12">
+      <div className="absolute top-[54px] left-0 w-full flex items-center px-[22px] py-2 h-12">
         {/* Settings button */}
         <button className="flex items-center justify-center p-2 rounded-full size-10 hover:opacity-80 transition-opacity cursor-pointer">
           <div className="overflow-clip rounded-[5px] size-6">
             <img alt="settings" className="block size-full" src={assets.profileIconSettings} />
           </div>
-        </button>
-
-        {/* Free Points button */}
-        <button className="bg-primary-yellow-50 flex gap-2 items-center justify-center pl-4 pr-5 py-2 rounded-full h-10 hover:opacity-90 transition-opacity cursor-pointer">
-          <div className="relative size-6">
-            <div className="absolute inset-[8.33%_37.5%_37.5%_8.33%]">
-              <img alt="" className="absolute block max-w-none size-full" src={assets.profileIconStars1} />
-            </div>
-            <div className="absolute inset-[54.17%_8.33%_8.33%_54.17%]">
-              <img alt="" className="absolute block max-w-none size-full" src={assets.profileIconStars2} />
-            </div>
-          </div>
-          <p className="font-jakarta font-bold text-[14px] leading-[1.3] tracking-[0.28px] text-[#1f2000] whitespace-nowrap">
-            Free Points!
-          </p>
         </button>
       </div>
 
@@ -202,7 +184,7 @@ const ProfileRequestPage = () => {
               <p className="font-jakarta font-normal leading-[1.4] text-[13px] text-primary-neutral-50">
                 View All
               </p>
-              <img alt="" className="block size-6 shrink-0" src={assets.profileIconArrowRight} />
+              <img alt="" className="block h-[13.5px] w-[17.5px] shrink-0" src={assets.profileIconArrowRight} />
             </button>
           </div>
           <div className="flex gap-4 overflow-x-auto pb-1 hide-scrollbar">
@@ -222,7 +204,7 @@ const ProfileRequestPage = () => {
               <p className="font-jakarta font-normal leading-[1.4] text-[13px] text-primary-neutral-50">
                 View All
               </p>
-              <img alt="" className="block size-6 shrink-0" src={assets.profileIconArrowRight} />
+              <img alt="" className="block h-[13.5px] w-[17.5px] shrink-0" src={assets.profileIconArrowRight} />
             </button>
           </div>
           <div className="flex gap-4 overflow-x-auto pb-1 hide-scrollbar">

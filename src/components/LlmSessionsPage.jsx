@@ -2,6 +2,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useDeferredValue, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const SESSION_PAGE_SIZE = 24;
+
 function formatTimestamp(value) {
   if (!value) return 'Unknown';
   const date = new Date(value);
@@ -351,11 +353,14 @@ const LlmSessionsPage = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [sessionLimit, setSessionLimit] = useState(SESSION_PAGE_SIZE);
   const [searchTerm, setSearchTerm] = useState('');
   const [stageFilter, setStageFilter] = useState('All');
   const deferredSearchTerm = useDeferredValue(searchTerm);
 
   const sessions = payload?.sessions ?? [];
+  const hasMoreSessions = Boolean(payload?.hasMore);
   const stats = payload?.stats ?? {
     runCount: 0,
     stepCount: 0,
@@ -377,15 +382,17 @@ const LlmSessionsPage = () => {
     });
   }, [deferredSearchTerm, sessions, stageFilter]);
 
-  const loadSessions = async ({ refresh = false } = {}) => {
+  const loadSessions = async ({ limit = sessionLimit, refresh = false, append = false } = {}) => {
     if (refresh) {
       setIsRefreshing(true);
+    } else if (append) {
+      setIsLoadingMore(true);
     } else {
       setIsLoading(true);
     }
 
     try {
-      const response = await fetch('/api/notion-llm-sessions?limit=24');
+      const response = await fetch(`/api/notion-llm-sessions?limit=${limit}`);
       const data = await response.json();
       if (!response.ok) throw new Error(data?.error || 'Failed to load Notion sessions.');
       setPayload(data);
@@ -395,11 +402,12 @@ const LlmSessionsPage = () => {
     } finally {
       setIsLoading(false);
       setIsRefreshing(false);
+      setIsLoadingMore(false);
     }
   };
 
   useEffect(() => {
-    loadSessions();
+    loadSessions({ limit: SESSION_PAGE_SIZE });
   }, []);
 
   return (
@@ -418,6 +426,7 @@ const LlmSessionsPage = () => {
                 <Tag tone="accent">AI Flow</Tag>
                 <Tag>Notion-backed</Tag>
                 <Tag>{filteredSessions.length} sessions</Tag>
+                <Tag>Showing latest {sessions.length}</Tag>
               </div>
               <h1 className="mt-3 text-[26px] font-semibold leading-tight tracking-[-0.02em] text-white lg:text-[36px]">
                 LLM session inspector
@@ -440,7 +449,7 @@ const LlmSessionsPage = () => {
               </button>
               <button
                 className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition-colors hover:bg-cyan-400/20"
-                onClick={() => loadSessions({ refresh: true })}
+                onClick={() => loadSessions({ limit: sessionLimit, refresh: true })}
                 type="button"
               >
                 {isRefreshing ? 'Refreshing…' : 'Refresh Notion'}
@@ -531,6 +540,29 @@ const LlmSessionsPage = () => {
               <p className="mt-1.5 text-[13px] leading-6 text-primary-neutral-300">
                 Try clearing the search or switching the stage filter back to All.
               </p>
+            </div>
+          )}
+
+          {!isLoading && sessions.length > 0 && !searchTerm && stageFilter === 'All' && (
+            <div className="flex flex-col items-center gap-3 pt-4">
+              {hasMoreSessions ? (
+                <button
+                  className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-2.5 text-sm font-semibold text-cyan-100 transition-colors hover:bg-cyan-400/20 disabled:cursor-not-allowed disabled:opacity-60"
+                  disabled={isLoadingMore || isRefreshing}
+                  onClick={() => {
+                    const nextLimit = sessionLimit + SESSION_PAGE_SIZE;
+                    setSessionLimit(nextLimit);
+                    loadSessions({ limit: nextLimit, append: true });
+                  }}
+                  type="button"
+                >
+                  {isLoadingMore ? 'Loading more…' : `Load ${SESSION_PAGE_SIZE} more`}
+                </button>
+              ) : (
+                <p className="text-[12px] text-primary-neutral-300">
+                  Showing all currently available sessions.
+                </p>
+              )}
             </div>
           )}
         </div>

@@ -1,4 +1,4 @@
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import AIChatPage from './AIChatPage';
 import MobileFrame from './MobileFrame';
 import PeoplePage from './PeoplePage';
@@ -16,26 +16,30 @@ const sections = [
       {
         label: 'People',
         activeTab: 'people',
-        initialPath: '/',
-        element: <Route index element={<PeoplePage />} />,
+        initialPath: '/app',
+        routePath: '/app',
+        element: <PeoplePage />,
       },
       {
         label: 'Request',
         activeTab: 'request',
-        initialPath: '/requests',
-        element: <Route path="/requests" element={<RequestPage />} />,
+        initialPath: '/app/requests',
+        routePath: '/app/requests',
+        element: <RequestPage />,
       },
       {
         label: 'People Detail',
         activeTab: 'people',
-        initialPath: '/profile/chloe',
-        element: <Route path="/profile/:id" element={<ProfileDetailPage />} />,
+        initialPath: '/app/profile/chloe',
+        routePath: '/app/profile/:id',
+        element: <ProfileDetailPage />,
       },
       {
         label: 'Request Detail',
         activeTab: 'request',
-        initialPath: '/request/chloe',
-        element: <Route path="/request/:id" element={<RequestDetailPage />} />,
+        initialPath: '/app/request/chloe',
+        routePath: '/app/request/:id',
+        element: <RequestDetailPage />,
       },
     ],
   },
@@ -45,8 +49,9 @@ const sections = [
       {
         label: 'AI Chat',
         activeTab: 'ai',
-        initialPath: '/ai',
-        element: <Route path="/ai" element={<AIChatPage />} />,
+        initialPath: '/app/ai',
+        routePath: '/app/ai',
+        element: <AIChatPage />,
       },
     ],
   },
@@ -56,8 +61,9 @@ const sections = [
       {
         label: 'My Profile',
         activeTab: 'profile',
-        initialPath: '/my-profile',
-        element: <Route path="/my-profile" element={<ProfileRequestPage />} />,
+        initialPath: '/app/my-profile',
+        routePath: '/app/my-profile',
+        element: <ProfileRequestPage />,
       },
     ],
   },
@@ -78,13 +84,11 @@ function StaticFrame({ page }) {
           className="origin-top-left pointer-events-none"
           style={{ transform: `scale(${FRAME_SCALE})`, width: 393, height: 852 }}
         >
-          <MemoryRouter initialEntries={[page.initialPath]}>
-            <MobileFrame activeTab={page.activeTab} onTabChange={() => {}}>
-              <Routes>
-                {page.element}
-              </Routes>
-            </MobileFrame>
-          </MemoryRouter>
+          <MobileFrame activeTab={page.activeTab} onTabChange={() => {}}>
+            <Routes location={page.initialPath}>
+              <Route path={page.routePath} element={page.element} />
+            </Routes>
+          </MobileFrame>
         </div>
       </div>
       <p className="font-jakarta text-xs text-white/50">{page.label}</p>

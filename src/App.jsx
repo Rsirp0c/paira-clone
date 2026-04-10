@@ -150,9 +150,10 @@ function LegacyAppRedirect({ prefix }) {
 function AppRouter({ figmaView, setFigmaView }) {
   const location = useLocation();
   const isObservabilityPage = location.pathname === '/ai-flow';
-  const showViewToggle = !isObservabilityPage;
+  const isAppRoute = location.pathname === '/app' || location.pathname.startsWith('/app/');
+  const showViewToggle = isAppRoute && !isObservabilityPage;
 
-  if (figmaView && !isObservabilityPage) {
+  if (figmaView && showViewToggle) {
     return (
       <>
         <ViewToggle figmaView={figmaView} setFigmaView={setFigmaView} />
